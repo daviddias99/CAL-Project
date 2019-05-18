@@ -13,8 +13,8 @@ using namespace std;
 
 typedef struct coordinates {
 
-    unsigned int latitude;
-    unsigned int longitude;
+    double latitude;
+    double longitude;
 
 
 }coordinates_t;
@@ -24,8 +24,6 @@ class NodeInfo {
 
 private:
 
-
-
     vector<Person> persons;
     unsigned int ID;
     coordinates_t coords;
@@ -33,12 +31,13 @@ private:
 public:
 
     NodeInfo(unsigned int ID, coordinates_t coords);
+    NodeInfo(unsigned int ID);
 
     void addPerson(Person newPerson);
     void removePerson(unsigned int personID);
     unsigned int getID();
     coordinates_t getCoords();
-
+	bool operator==(const NodeInfo& node) const;
 };
 
 

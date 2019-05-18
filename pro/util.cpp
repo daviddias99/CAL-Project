@@ -32,7 +32,7 @@ Time::Time(string time) {
 
     ss >> minuto;
     if (ss.fail())
-        DataInvalida("Formato invalido.");
+        TimeInvalido("Formato invalido.");
     if (minuto > 59)
         throw TimeInvalido("Minuto invalido.");
     if (ss.peek() != ':')
@@ -72,6 +72,40 @@ unsigned int Time::getMin() const
 unsigned int Time::getSeg() const
 {
     return this->segundo;
+}
+
+Time Time::operator+(Time & time2)
+{
+	uint second = this->segundo + time2.segundo;
+	uint minute = this->minuto + time2.minuto + (second / 60);
+	uint hour  = this->hora + time2.hora + (minute / 60);
+	minute = minute % 60;
+	second = second % 60;
+
+	return Time(hour, minute);
+}
+
+bool Time::operator<(Time &time2) {
+
+	if (this->hora < time2.hora)
+		return true;
+	else if (this->hora == time2.hora) {
+
+		if (this->minuto < time2.minuto)
+			return true;
+		else if (this->minuto == time2.minuto) {
+
+			if (this->segundo < time2.segundo)
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
+
+	}
+	else
+		return false;
 }
 
 Time::Time() {

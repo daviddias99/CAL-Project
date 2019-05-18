@@ -1,6 +1,13 @@
 #include <iostream>
+#include "Graph.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    
+	Graph grafo;
+
+	grafo.loadFromFile();
+	grafo.floydWarshallShortestPath();
+
+
     return 0;
 }

@@ -7,8 +7,13 @@
 
 #include <ostream>
 #include <string>
+#include "Exceptions.h"
+#include <sstream>
+#include <time.h>
 
 using namespace std;
+
+typedef unsigned int uint;
 
 /**
  * @brief Classe que representa uma hora do dia (horas, minutos, segundos)
@@ -94,6 +99,10 @@ public:
     * @return	a output stream de argumento
     */
     friend ostream& operator<<(ostream& os, const Time& d);
+
+	Time operator+(Time& time2);
+
+	bool operator<(Time &time2);
 
 };
 
