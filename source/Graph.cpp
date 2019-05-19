@@ -180,8 +180,8 @@ void Graph::loadFromFile()
 	ifstream nodeFile, edgeFile;
 	string currentLine;
 
-	nodeFile.open("T01_nodes_lat_lon_Fafe.txt");
-	edgeFile.open("T01_edges_Fafe.txt");
+    nodeFile.open("C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\Fafe\\T01_nodes_lat_lon_Fafe.txt");
+    edgeFile.open("C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\Fafe\\T01_edges_Fafe.txt");
 
 	getline(nodeFile, currentLine);
 

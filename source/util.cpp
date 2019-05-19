@@ -113,7 +113,7 @@ Time::Time() {
     time_t tempoAtual = time(NULL);
 
     tm* tempAtualStruct = new tm;
-    localtime_s(tempAtualStruct, &tempoAtual);
+    //localtime(tempAtualStruct, &tempoAtual);
 
     this->hora = tempAtualStruct->tm_hour;
     this->minuto = tempAtualStruct->tm_min;

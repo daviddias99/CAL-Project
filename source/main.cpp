@@ -9,8 +9,8 @@ void loadGraphForVis(GraphViewer* gv) {
 	ifstream nodeFile, edgeFile;
 	string currentLine;
 
-	nodeFile.open("mapas//Fafe//T01_nodes_X_Y_Fafe.txt");
-	edgeFile.open("mapas//Fafe//T01_edges_Fafe.txt");
+	nodeFile.open("C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\Fafe\\T01_nodes_X_Y_Fafe.txt");
+	edgeFile.open("C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\Fafe\\T01_edges_Fafe.txt");
 
 	getline(nodeFile, currentLine);
 
@@ -25,7 +25,7 @@ void loadGraphForVis(GraphViewer* gv) {
 
 		line >> tempChar >> ID >> tempChar >> coords.latitude >> tempChar >> coords.longitude;
 
-		gv->addNode(ID, coords.latitude- 567213.5133103, coords.longitude - 4587664);
+		gv->addNode(ID, coords.latitude - 567213.5133103, coords.longitude - 4587664);
 	}
 
 	unsigned int ID = 0;
