@@ -58,6 +58,43 @@ bool Graph::addEdge(const NodeInfo &sourc, const NodeInfo &dest, EdgeInfo w) {
 	return true;
 }
 
+/*
+* Performs a depth-first search (dfs) in a graph (this).
+* Returns a vector with the contents of the vertices by dfs order.
+* Follows the algorithm described in theoretical classes.
+*/
+vector<NodeInfo> Graph::dfs(NodeInfo v) const {
+	vector<NodeInfo> res;
+	for (auto v : vertexSet)
+		v->visited = false;
+
+	dfsVisit(findVertex(v), res);
+
+	return res;
+}
+
+Graph Graph::getGraphAchievableFrom(Vertex * v) 
+{
+	vector<NodeInfo> res;
+	dfsVisit(v, res);
+	return this->buildAchievableGraph();
+}
+
+/*
+* Auxiliary function that visits a vertex (v) and its adjacent, recursively.
+* Updates a parameter with the list of visited node contents.
+*/
+
+void Graph::dfsVisit(Vertex *v, vector<NodeInfo> & res) const {
+	v->visited = true;
+	res.push_back(v->info);
+	for (auto & e : v->adj) {
+		auto w = e.dest;
+		if (!w->visited)
+			dfsVisit(w, res);
+	}
+}
+
 
 /**************** Single Source Shortest Path algorithms ************/
 
@@ -175,28 +212,48 @@ int func(unsigned int a, double b, unsigned int c) {
 	return a + b + c;
 }
 
-void Graph::loadFromFile()
+void Graph::loadFromFile(string cidade)
 {
-	ifstream nodeFile, edgeFile;
-	string currentLine;
+	ifstream nodeFile, edgeFile,plotFile;
+	string currentLine,currentLine2, nodePathStr_XY, nodePathStr_LL, edgePathStr;
 
-    nodeFile.open("C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\Fafe\\T01_nodes_lat_lon_Fafe.txt");
-    edgeFile.open("C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\Fafe\\T01_edges_Fafe.txt");
+	ostringstream nodePath_XY;
+	ostringstream nodePath_LL;
+	ostringstream edgePath;
+
+
+	nodePath_XY << MAP_FOLDER_PATH << cidade << NODE_XY_FILE_PATH << cidade << ".txt";
+	nodePath_LL << MAP_FOLDER_PATH << cidade << NODE_LL_FILE_PATH << cidade << ".txt";
+	edgePath << MAP_FOLDER_PATH << cidade << EDGE_FILE_PATH << cidade << ".txt";
+
+	nodePathStr_XY = nodePath_XY.str();
+	nodePathStr_LL = nodePath_LL.str();
+	edgePathStr = edgePath.str();
+
+	nodeFile.open(nodePathStr_LL);
+	plotFile.open(nodePathStr_XY);
+	edgeFile.open(edgePathStr);
 
 	getline(nodeFile, currentLine);
+	getline(plotFile, currentLine2);
 
 	while (!nodeFile.eof()) {
 
 		getline(nodeFile, currentLine);
+		getline(plotFile, currentLine2);
+
 		stringstream line(currentLine);
+		stringstream line2(currentLine2);
 
 		char tempChar;
 		unsigned int ID;
-		coordinates_t coords;
+		coordinates_t map_coords;
+		plotPos_t plot_coords;
 
-		line >> tempChar >> ID >> tempChar >> coords.latitude >> tempChar >> coords.longitude;
+		line >> tempChar >> ID >> tempChar >> map_coords.latitude >> tempChar >> map_coords.longitude;
+		line2 >> tempChar >> ID >> tempChar >> plot_coords.x >> tempChar >> plot_coords.y;
 
-		NodeInfo info(ID,coords);
+		NodeInfo info(ID, map_coords, plot_coords);
 
 		this->addVertex(info);
 	}
@@ -219,6 +276,32 @@ void Graph::loadFromFile()
 	}
 
 	return;
+}
+
+void Graph::printMatrices()
+{
+	ofstream wOutput;
+	ofstream pOutput;
+
+	wOutput.open("wFile.txt");
+	pOutput.open("pFile.txt");
+
+	for (int i = 0; i < vertexSet.size(); i++) {
+
+		for (int j = 0; j < vertexSet.size(); j++) {
+
+			if(W[i][j] == INF)
+				wOutput << "INF" << '\t';
+			else
+				wOutput << W[i][j] << '\t';
+
+		}
+
+		wOutput << '\n';
+	}
+
+
+
 }
 
 
@@ -267,4 +350,30 @@ vector<NodeInfo> Graph::getfloydWarshallPath(const NodeInfo &orig, const NodeInf
 		res.push_back(vertexSet[j]->info);
 	reverse(res.begin(), res.end());
 	return res;
+}
+
+Graph Graph::buildAchievableGraph() {
+
+	Graph newGraph;
+
+	for (size_t i = 0; i < this->vertexSet.size(); i++) {
+
+		if (vertexSet.at(i)->visited)
+			newGraph.addVertex(vertexSet.at(i)->info);
+	}
+
+	for (size_t i = 0; i < this->vertexSet.size(); i++) {
+
+		if (vertexSet.at(i)->visited) {
+
+			for (size_t j = 0; j < vertexSet.at(i)->adj.size(); j++) {
+
+				newGraph.addEdge(vertexSet.at(i)->adj.at(j).orig->info, vertexSet.at(i)->adj.at(j).dest->info, vertexSet.at(i)->adj.at(j).info);
+			}
+
+		}
+			
+	}
+
+	return newGraph;
 }

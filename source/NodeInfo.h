@@ -19,6 +19,14 @@ typedef struct coordinates {
 
 }coordinates_t;
 
+typedef struct plotPos {
+
+	double x;
+	double y;
+
+
+}plotPos_t;
+
 
 class NodeInfo {
 
@@ -26,17 +34,19 @@ private:
 
     vector<Person> persons;
     unsigned int ID;
-    coordinates_t coords;
+    coordinates_t map_coords;
+	plotPos_t plot_coords;
 
 public:
 
-    NodeInfo(unsigned int ID, coordinates_t coords);
+    NodeInfo(unsigned int ID, coordinates_t coords, plotPos_t plot);
     NodeInfo(unsigned int ID);
 
     void addPerson(Person newPerson);
     void removePerson(unsigned int personID);
     unsigned int getID();
     coordinates_t getCoords();
+	plotPos_t getPlotPos();
 	bool operator==(const NodeInfo& node) const;
 };
 

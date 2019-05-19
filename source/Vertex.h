@@ -2,6 +2,7 @@
 
 class Edge;
 class Graph;
+class GraphViewer;
 
 
 #include "NodeInfo.h"
@@ -14,7 +15,7 @@ class Graph;
 class Vertex {
 	NodeInfo info;						// contents
 	vector<Edge > adj;					// outgoing edges
-	bool visited;					 // auxiliary field
+	bool visited;						// auxiliary field
 	double dist = 0;
 	Vertex *path = nullptr;
 	int queueIndex = 0; 		// required by MutablePriorityQueue
@@ -30,4 +31,5 @@ public:
 	Vertex *getPath() const;
 	friend class Graph;
 	friend class MutablePriorityQueue<Vertex>;
+	friend void loadGraphForVis(GraphViewer* gv, Graph& graph);
 };

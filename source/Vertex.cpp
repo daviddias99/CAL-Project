@@ -1,7 +1,7 @@
 #include "Vertex.h"
 
 
-Vertex::Vertex(NodeInfo in) : info(in) {}
+Vertex::Vertex(NodeInfo in) : info(in), visited(false) {}
 
 /*
 * Auxiliary function to add an outgoing edge to a vertex (this),

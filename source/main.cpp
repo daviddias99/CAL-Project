@@ -1,17 +1,64 @@
 #include <iostream>
 #include "Graph.h"
 #include "graph_viz/graphviewer.h"
+#include <conio.h>
 
 
-void loadGraphForVis(GraphViewer* gv) {
+#define MAP_FOLDER_PATH "C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\"
+#define EDGE_FILE_PATH "\\T01_edges_"
+#define NODE_XY_FILE_PATH "\\T01_nodes_X_Y_"
+#define NODE_LL_FILE_PATH "\\T01_nodes_lat_lon_"
 
+
+void loadGraphForVis(GraphViewer* gv, string cidade) {
+
+	int minX = INF;
+	int minY = INF;
 
 	ifstream nodeFile, edgeFile;
-	string currentLine;
+	string currentLine,nodePathStr_XY, nodePathStr_LL, edgePathStr;
+	unsigned int ID = 0;
 
-	nodeFile.open("C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\Fafe\\T01_nodes_X_Y_Fafe.txt");
-	edgeFile.open("C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\Fafe\\T01_edges_Fafe.txt");
+	ostringstream nodePath_XY;
+	ostringstream nodePath_LL;
+	ostringstream edgePath;
 
+	nodePath_XY << MAP_FOLDER_PATH << cidade << NODE_XY_FILE_PATH << cidade << ".txt";
+	nodePath_LL << MAP_FOLDER_PATH << cidade << NODE_LL_FILE_PATH << cidade << ".txt";
+	edgePath << MAP_FOLDER_PATH << cidade << EDGE_FILE_PATH << cidade << ".txt";
+
+	nodePathStr_XY = nodePath_XY.str();
+	nodePathStr_LL = nodePath_LL.str();
+	edgePathStr = edgePath.str();
+
+	nodeFile.open(nodePathStr_XY);
+	edgeFile.open(edgePathStr);
+
+	getline(nodeFile, currentLine);
+
+
+
+	while (!nodeFile.eof()) {
+
+		getline(nodeFile, currentLine);
+		stringstream line(currentLine);
+
+		char tempChar;
+		unsigned int ID;
+		plotPos_t coords;
+
+		line >> tempChar >> ID >> tempChar >> coords.x >> tempChar >> coords.y;
+
+		if (coords.x < minX)
+			minX = coords.x;
+
+		if (coords.y < minY)
+			minY = coords.y;
+
+	}
+
+	nodeFile.close();
+	nodeFile.open(nodePathStr_XY);
 	getline(nodeFile, currentLine);
 
 	while (!nodeFile.eof()) {
@@ -21,14 +68,14 @@ void loadGraphForVis(GraphViewer* gv) {
 
 		char tempChar;
 		unsigned int ID;
-		coordinates_t coords;
+		plotPos_t coords;
 
-		line >> tempChar >> ID >> tempChar >> coords.latitude >> tempChar >> coords.longitude;
+		line >> tempChar >> ID >> tempChar >> coords.x >> tempChar >> coords.y;
 
-		gv->addNode(ID, coords.latitude - 567213.5133103, coords.longitude - 4587664);
+		gv->addNode(ID, coords.x - minX, coords.y - minY);
+
 	}
 
-	unsigned int ID = 0;
 	getline(edgeFile, currentLine);
 
 	while (!edgeFile.eof()) {
@@ -52,22 +99,82 @@ void loadGraphForVis(GraphViewer* gv) {
 
 }
 
+void loadGraphForVis(GraphViewer* gv, Graph& graph) {
+
+	vector<Vertex*> vSet = graph.getVertexSet();
+	unsigned int id = 0;
+
+	int minX = INF;
+	int minY = INF;
+
+	for (size_t i = 0; i < vSet.size(); i++) {
+
+		Vertex * currVertex = vSet.at(i);
+
+		double x = currVertex->getInfo().getPlotPos().x;
+		double y = currVertex->getInfo().getPlotPos().y;
+
+		if (x < minX)
+			minX = x;
+
+		if (y < minY)
+			minY = y;
+	}
+
+	for (size_t i = 0; i < vSet.size(); i++) {
+
+		Vertex * currVertex = vSet.at(i);
+
+		double x = currVertex->getInfo().getPlotPos().x;
+		double y = currVertex->getInfo().getPlotPos().y;
+		int ID = currVertex->getInfo().getID();
+
+		gv->addNode(currVertex->getInfo().getID(), x - minX, y - minY);
+
+	}
+
+	for (size_t i = 0; i < vSet.size(); i++) {
+
+
+		for (size_t j = 0; j < vSet.at(i)->adj.size(); j++) {
+
+			gv->addEdge(id, vSet.at(i)->adj.at(j).orig->info.getID(), vSet.at(i)->adj.at(j).dest->info.getID(), EdgeType::DIRECTED);
+			id++;
+		}
+	}
+
+	gv->rearrange();
+}
+
 
 int main() {
 
-	Graph grafo;
+	//Setup
 
+	Graph grafo, simplifiedGraph;
 	GraphViewer *gv = new GraphViewer(50000, 50000, false);
 
 	gv->createWindow(1200, 1200);
 	gv->defineVertexColor("blue");
 	gv->defineEdgeColor("black");
-	loadGraphForVis(gv);
 
 
-	grafo.loadFromFile();
-	grafo.floydWarshallShortestPath();
 
+	//Loading
+
+	grafo.loadFromFile("Porto");
+
+	//Processing
+
+	//Simplification number 1
+
+	//grafo.dfs(NodeInfo(428215782));
+	//simplifiedGraph = grafo.buildAchievableGraph();
+	loadGraphForVis(gv, grafo);
+	//simplifiedGraph.floydWarshallShortestPath();
+	//simplifiedGraph.printMatrices();
+
+	_getch();
 
 	return 0;
 }

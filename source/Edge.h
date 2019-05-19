@@ -5,6 +5,7 @@
 
 class Graph;
 class Vertex;
+class GraphViewer;
 
 class Edge {
 
@@ -17,7 +18,8 @@ class Edge {
 public:
 	Edge(Vertex *o, Vertex *d, EdgeInfo w);
 	friend class Graph;
-	friend class Vertex;
+	friend class Vertex; 
+	friend void loadGraphForVis(GraphViewer* gv, Graph& graph);
 
 	// Fp07
 	double getWeight() const;

@@ -4,9 +4,10 @@
 
 #include "NodeInfo.h"
 
-NodeInfo::NodeInfo(unsigned int ID, coordinates_t coords) {
+NodeInfo::NodeInfo(unsigned int ID, coordinates_t coords, plotPos_t plot) {
 
-	this->coords = coords;
+	this->map_coords = coords;
+	this->plot_coords = plot;
 	this->ID = ID;
 
 }
@@ -16,7 +17,7 @@ NodeInfo::NodeInfo(unsigned int ID) {
 	coordinates_t coords;
 	coords.latitude = 0;
 	coords.longitude = 0;
-	this->coords = coords;
+	this->map_coords = coords;
 	this->ID = ID;
 
 }
@@ -45,7 +46,12 @@ unsigned int NodeInfo::getID() {
 }
 
 coordinates_t NodeInfo::getCoords() {
-	return coords;
+	return map_coords;
+}
+
+plotPos_t NodeInfo::getPlotPos()
+{
+	return plot_coords;
 }
 
 bool NodeInfo::operator==(const NodeInfo& node) const {
