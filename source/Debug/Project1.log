@@ -1,0 +1,3 @@
+﻿  main.cpp
+c:\users\utilizador\documents\project1\main.cpp(28): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Project1.vcxproj -> C:\Users\utilizador\Documents\Project1\Debug\CAL-Project.exe
