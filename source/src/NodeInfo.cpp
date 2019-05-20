@@ -58,3 +58,24 @@ bool NodeInfo::operator==(const NodeInfo& node) const {
 
 	return this->ID == node.ID;
 }
+
+double NodeInfo::realDistanceTo(NodeInfo node) const {
+
+    double distance;
+    const double EARTH_RADIUS = 6357500;
+
+    coordinates_t coords1 = this->map_coords;
+    coordinates_t coords2 = node.map_coords;
+
+    distance = 2 * EARTH_RADIUS * asin(sqrt(pow(sin((coords1.latitude - coords2.latitude)/2),2) + cos(coords1.latitude)*cos(coords2.latitude)*pow(sin((coords1.longitude - coords2.longitude)/2),2)));
+
+    return distance;
+}
+
+double NodeInfo::plotDistanceTo(NodeInfo node) const {
+
+    plotPos_t coords1 = this->plot_coords;
+    plotPos_t coords2 = node.plot_coords;
+
+    return sqrt( (coords1.x - coords2.x) * (coords1.x - coords2.x) + (coords1.y - coords2.y) * (coords1.y - coords2.y));
+}

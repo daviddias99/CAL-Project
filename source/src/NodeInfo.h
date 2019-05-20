@@ -8,6 +8,7 @@
 
 #include "Person.h"
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -39,7 +40,7 @@ private:
 
 public:
 
-    NodeInfo(unsigned int ID, coordinates_t coords, plotPos_t plot);
+    NodeInfo(unsigned int ID, coordinates_t mapCoords, plotPos_t plotCoords);
     NodeInfo(unsigned int ID);
 
     void addPerson(Person newPerson);
@@ -48,6 +49,9 @@ public:
     coordinates_t getCoords();
 	plotPos_t getPlotPos();
 	bool operator==(const NodeInfo& node) const;
+	double realDistanceTo(NodeInfo node) const;
+	double plotDistanceTo(NodeInfo node) const;
+
 };
 
 

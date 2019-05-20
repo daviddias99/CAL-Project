@@ -207,9 +207,9 @@ Graph::~Graph() {
 	deleteMatrix(P, vertexSet.size());
 }
 
-int func(unsigned int a, double b, unsigned int c) {
+int func(unsigned int vMax, double distance, unsigned int c) {
 
-	return a + b + c;
+	return distance/vmax;
 }
 
 void Graph::loadFromFile(string cidade)
@@ -271,7 +271,10 @@ void Graph::loadFromFile(string cidade)
 
 		line >> tempChar >> IDSource >> tempChar >> IDDest;
 
-		this->addEdge(NodeInfo(IDSource), NodeInfo(IDDest), EdgeInfo(ID,50,150,2,func));
+		Vertex* v1 = this->findVertex(NodeInfo(IDSource));
+		Vertex* v2 = this->findVertex(NodeInfo(IDDest));
+
+		this->addEdge(v1->getInfo(), v2->getInfo(), EdgeInfo(ID,833,v1->getInfo().realDistanceTo(v2->getInfo()),2,func));
 		ID++;
 	}
 

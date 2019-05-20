@@ -1,13 +1,13 @@
 #include <iostream>
 #include "Graph.h"
-#include "graph_viz/graphviewer.h"
-#include <conio.h>
+#include "../graph_viz/graphviewer.h"
 
 
-#define MAP_FOLDER_PATH "C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\"
-#define EDGE_FILE_PATH "\\T01_edges_"
-#define NODE_XY_FILE_PATH "\\T01_nodes_X_Y_"
-#define NODE_LL_FILE_PATH "\\T01_nodes_lat_lon_"
+
+#define MAP_FOLDER_PATH "/home/david/Documents/Repositories/Trabalhos/CAL-Project/source/mapas/"
+#define EDGE_FILE_PATH "/T01_edges_"
+#define NODE_XY_FILE_PATH "/T01_nodes_X_Y_"
+#define NODE_LL_FILE_PATH "/T01_nodes_lat_lon_"
 
 
 void loadGraphForVis(GraphViewer* gv, string cidade) {
@@ -139,6 +139,9 @@ void loadGraphForVis(GraphViewer* gv, Graph& graph) {
 		for (size_t j = 0; j < vSet.at(i)->adj.size(); j++) {
 
 			gv->addEdge(id, vSet.at(i)->adj.at(j).orig->info.getID(), vSet.at(i)->adj.at(j).dest->info.getID(), EdgeType::DIRECTED);
+
+			int weight = (int)vSet.at(i)->adj.at(j).getWeight();
+			gv->setEdgeWeight(id,weight);
 			id++;
 		}
 	}
@@ -160,6 +163,7 @@ int main() {
 
 
 
+
 	//Loading
 
 	grafo.loadFromFile("Porto");
@@ -168,13 +172,13 @@ int main() {
 
 	//Simplification number 1
 
-	//grafo.dfs(NodeInfo(428215782));
-	//simplifiedGraph = grafo.buildAchievableGraph();
-	loadGraphForVis(gv, grafo);
+	grafo.dfs(NodeInfo(428215782));
+	simplifiedGraph = grafo.buildAchievableGraph();
+	loadGraphForVis(gv, simplifiedGraph);
 	//simplifiedGraph.floydWarshallShortestPath();
 	//simplifiedGraph.printMatrices();
 
-	_getch();
+    getchar();
 
 	return 0;
 }

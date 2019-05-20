@@ -21,10 +21,10 @@ class Edge;
 class Vertex;
 
 #define INF 2147483647
-#define MAP_FOLDER_PATH "C:\\Users\\utilizador\\Documents\\Faculdade\\CAL-Project\\source\\mapas\\"
-#define EDGE_FILE_PATH "\\T01_edges_"
-#define NODE_XY_FILE_PATH "\\T01_nodes_X_Y_"
-#define NODE_LL_FILE_PATH "\\T01_nodes_lat_lon_"
+#define MAP_FOLDER_PATH "/home/david/Documents/Repositories/Trabalhos/CAL-Project/source/mapas/"
+#define EDGE_FILE_PATH "/T01_edges_"
+#define NODE_XY_FILE_PATH "/T01_nodes_X_Y_"
+#define NODE_LL_FILE_PATH "/T01_nodes_lat_lon_"
 
 
 #include "NodeInfo.h"
