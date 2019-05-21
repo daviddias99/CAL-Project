@@ -384,10 +384,9 @@ Graph Graph::buildAchievableGraph() {
 void Graph::loadPeople() {
 
     ifstream peopleFile;
-    peopleFile.open("output.txt");
+    peopleFile.open("../resources/output.txt");
     string currentLine;
 
-    getline(peopleFile, currentLine);
 
     while (!peopleFile.eof()) {
 

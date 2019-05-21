@@ -4,7 +4,7 @@
 
 
 
-#define MAP_FOLDER_PATH "/home/david/Documents/Repositories/Trabalhos/CAL-Project/source/mapas/"
+#define MAP_FOLDER_PATH "../resources/mapas/"
 #define EDGE_FILE_PATH "/T01_edges_"
 #define NODE_XY_FILE_PATH "/T01_nodes_X_Y_"
 #define NODE_LL_FILE_PATH "/T01_nodes_lat_lon_"
@@ -130,7 +130,7 @@ void loadGraphForVis(GraphViewer* gv, Graph& graph) {
 		int ID = currVertex->getInfo().getID();
 
 		gv->addNode(currVertex->getInfo().getID(), x - minX, y - minY);
-
+        gv->setVertexColor(currVertex->getInfo().getID(),currVertex->getInfo().getColor());
 
 	}
 
@@ -168,16 +168,17 @@ int main() {
 	//Loading
 
 	cout << "1" << endl;
-	grafo.loadFromFile("Viseu");
+	grafo.loadFromFile("Fafe");
+	grafo.loadPeople();
     cout << "2" << endl;
 	//Processing
 
 	//Simplification number 1
 
-	//grafo.dfs(NodeInfo(428215782));
-	//simplifiedGraph = grafo.buildAchievableGraph();
+	grafo.dfs(NodeInfo(367602529));
+	simplifiedGraph = grafo.buildAchievableGraph();
     cout << "3" << endl;
-	loadGraphForVis(gv, grafo);
+	loadGraphForVis(gv, simplifiedGraph);
     cout << "4" << endl;
 	simplifiedGraph.floydWarshallShortestPath();
 	simplifiedGraph.printMatrices();
