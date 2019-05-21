@@ -29,3 +29,11 @@ void Person::setNodes(unsigned int sourceID, unsigned int destID) {
 
 }
 
+unsigned int Person::getDestNodeID() {
+    return this->destNodeID;
+}
+
+unsigned int Person::getSourceNodeID() {
+    return this->sourceNodeID;
+}
+

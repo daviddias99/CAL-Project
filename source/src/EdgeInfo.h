@@ -14,6 +14,7 @@ private:
 public:
 
 	EdgeInfo(unsigned int ID, unsigned int vMax, double distance, unsigned int fTransito, float timeFunc(unsigned int, double, unsigned int) );
+	EdgeInfo(int tempo );
 	int getTempo() const;
 	unsigned int getID();
 

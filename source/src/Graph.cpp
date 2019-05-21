@@ -418,3 +418,84 @@ void Graph::loadPeople() {
     }
 
 }
+
+Graph* Graph::processGraph() {
+
+    removeInvalidPeople();
+    floydWarshallShortestPath();
+
+    Graph* fwGraph = new Graph();
+
+    for(int i = 0; i < this->vertexSet.size();i++){
+
+        vertexSet.at(i)->queueIndex = i;
+        NodeInfo info = vertexSet.at(i)->getInfo();
+        vector<Person> people = info.getPeople();
+
+        if(!people.empty()){
+
+            fwGraph->addVertex(info);
+
+            for(int j = 0; j < people.size();j++){
+
+
+                fwGraph->addVertex(this->findVertex(NodeInfo(people.at(j).getDestNodeID()))->getInfo());
+
+            }
+        }
+
+    }
+
+    for (int k = 0; k < fwGraph->vertexSet.size(); ++k) {
+        for (int i = 0; i < fwGraph->vertexSet.size(); ++i) {
+
+            if(k == i)
+                continue;
+
+            Vertex* v1 = fwGraph->vertexSet.at(k);
+            Vertex* v2 = fwGraph->vertexSet.at(i);
+            int v1Original = this->findVertex(v1->getInfo())->queueIndex;
+            int v2Original = this->findVertex(v2->getInfo())->queueIndex;
+
+
+            if(W[v1Original][v2Original] != INF)
+                fwGraph->addEdge(v1->getInfo(),v2->getInfo(),EdgeInfo(W[v1Original][v2Original]));
+
+        }
+    }
+
+    return fwGraph;
+}
+
+void Graph::removeInvalidPeople() {
+
+    for(int i = 0; i < this->vertexSet.size();i++){
+
+        NodeInfo* info = &vertexSet.at(i)->getInfoRef();
+        vector<Person> people = info->getPeople();
+
+        for(int j = 0; j < people.size(); j++){
+
+            Person person = people.at(j);
+
+            if(findVertex(NodeInfo(person.getDestNodeID())) == NULL){
+                info->removePerson(person.getID());
+            }
+        }
+    }
+
+}
+
+void Graph::printDests() {
+
+    for(int i = 0; i < vertexSet.size(); i++){
+
+        for (int j = 0; j < vertexSet.at(i)->getInfo().getPeople().size(); ++j) {
+
+            cout << "-" << vertexSet.at(i)->getInfo().getPeople().at(j).getDestNodeID() << endl;
+
+        }
+
+    }
+
+}

@@ -15,9 +15,6 @@ int main() {
 	gv->defineVertexColor("blue");
 	gv->defineEdgeColor("black");
 
-
-    genPeople(5000,"Fafe");
-
 	//Loading
 
 	grafo.loadFromFile("Fafe");
@@ -26,11 +23,14 @@ int main() {
 
 	//Simplification number 1
 
-	grafo.dfs(NodeInfo(1249745324));
-	simplifiedGraph = grafo.buildAchievableGraph();
-	loadGraphForVis(gv, simplifiedGraph);
-	simplifiedGraph.floydWarshallShortestPath();
-	simplifiedGraph.printMatrices();
+//	grafo.dfs(NodeInfo(1337026227));
+//	simplifiedGraph = grafo.buildAchievableGraph();
+//	Graph* grafo3 = simplifiedGraph.processGraph();
+//    loadGraphForVis(gv, simplifiedGraph);
+    loadGraphForVis(gv, grafo);
+
+//	simplifiedGraph.floydWarshallShortestPath();
+//	simplifiedGraph.printMatrices();
 
     getchar();
 

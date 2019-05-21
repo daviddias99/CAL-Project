@@ -67,6 +67,11 @@ public:
     void loadFromFile(string cidade);
     void printMatrices();
     void loadPeople();
+    Graph* processGraph();
+    void removeInvalidPeople();
+
+    // debugging functions;
+    void printDests();
 
 };
 

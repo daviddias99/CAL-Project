@@ -19,3 +19,9 @@ unsigned int EdgeInfo::getID()
 {
 	return ID;
 }
+
+EdgeInfo::EdgeInfo(int tempo) {
+
+    this->tempo = tempo;
+
+}

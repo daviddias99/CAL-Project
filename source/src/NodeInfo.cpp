@@ -85,9 +85,9 @@ string NodeInfo::getColor() const {
     switch(this->persons.size()){
 
         case 0:
-            return "BLUE";
-        case 1:
             return "CYAN";
+        case 1:
+            return "BLUE";
         case 2:
             return "YELLOW";
         case 3:
@@ -96,4 +96,10 @@ string NodeInfo::getColor() const {
             return "RED";
 
     }
+}
+
+vector<Person> NodeInfo::getPeople() {
+
+
+    return this->persons;
 }

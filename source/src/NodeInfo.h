@@ -48,6 +48,7 @@ public:
     unsigned int getID();
     coordinates_t getCoords();
 	plotPos_t getPlotPos();
+	vector<Person> getPeople();
 	bool operator==(const NodeInfo& node) const;
 	double realDistanceTo(NodeInfo node) const;
 	double plotDistanceTo(NodeInfo node) const;

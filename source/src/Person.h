@@ -28,6 +28,8 @@ public:
     void setTimes(Time minDep,Time maxArr);
     void setNodes(unsigned int sourceID, unsigned int destID );
     unsigned int getID();
+    unsigned int getDestNodeID();
+    unsigned int getSourceNodeID();
 
 
 };
