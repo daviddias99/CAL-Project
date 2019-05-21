@@ -79,3 +79,21 @@ double NodeInfo::plotDistanceTo(NodeInfo node) const {
 
     return sqrt( (coords1.x - coords2.x) * (coords1.x - coords2.x) + (coords1.y - coords2.y) * (coords1.y - coords2.y));
 }
+
+string NodeInfo::getColor() const {
+
+    switch(this->persons.size()){
+
+        case 0:
+            return "BLUE";
+        case 1:
+            return "CYAN";
+        case 2:
+            return "YELLOW";
+        case 3:
+            return "ORANGE";
+        default:
+            return "RED";
+
+    }
+}

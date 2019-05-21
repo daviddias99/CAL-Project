@@ -31,3 +31,7 @@ double Vertex::getDist() const {
 Vertex *Vertex::getPath() const {
 	return this->path;
 }
+
+NodeInfo &Vertex::getInfoRef()  {
+    return this->info;
+}

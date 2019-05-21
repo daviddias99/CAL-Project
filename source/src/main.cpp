@@ -131,6 +131,7 @@ void loadGraphForVis(GraphViewer* gv, Graph& graph) {
 
 		gv->addNode(currVertex->getInfo().getID(), x - minX, y - minY);
 
+
 	}
 
 	for (size_t i = 0; i < vSet.size(); i++) {
@@ -166,17 +167,20 @@ int main() {
 
 	//Loading
 
-	grafo.loadFromFile("Porto");
-
+	cout << "1" << endl;
+	grafo.loadFromFile("Viseu");
+    cout << "2" << endl;
 	//Processing
 
 	//Simplification number 1
 
-	grafo.dfs(NodeInfo(428215782));
-	simplifiedGraph = grafo.buildAchievableGraph();
-	loadGraphForVis(gv, simplifiedGraph);
-	//simplifiedGraph.floydWarshallShortestPath();
-	//simplifiedGraph.printMatrices();
+	//grafo.dfs(NodeInfo(428215782));
+	//simplifiedGraph = grafo.buildAchievableGraph();
+    cout << "3" << endl;
+	loadGraphForVis(gv, grafo);
+    cout << "4" << endl;
+	simplifiedGraph.floydWarshallShortestPath();
+	simplifiedGraph.printMatrices();
 
     getchar();
 

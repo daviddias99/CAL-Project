@@ -15,3 +15,17 @@ Person::Person(unsigned int ID, string name) {
 
 }
 
+void Person::setTimes(Time minDep, Time maxArr) {
+
+    this->minDepartureTime = minDep;
+    this->maxArrivalTime = maxArr;
+
+}
+
+void Person::setNodes(unsigned int sourceID, unsigned int destID) {
+
+    this->sourceNodeID = sourceID;
+    this->destNodeID = destID;
+
+}
+

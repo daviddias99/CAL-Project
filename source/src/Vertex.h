@@ -27,6 +27,7 @@ public:
 	Vertex(NodeInfo in);
 	bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
 	NodeInfo getInfo() const;
+	NodeInfo& getInfoRef();
 	double getDist() const;
 	Vertex *getPath() const;
 	friend class Graph;

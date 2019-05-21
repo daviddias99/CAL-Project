@@ -17,11 +17,16 @@ private:
     Time minDepartureTime;
     Time maxArrivalTime;
     Time pickUpTime;
+    unsigned int sourceNodeID;
+    unsigned int destNodeID;
 
 public:
 
 
     Person(unsigned int ID, string name);
+
+    void setTimes(Time minDep,Time maxArr);
+    void setNodes(unsigned int sourceID, unsigned int destID );
     unsigned int getID();
 
 

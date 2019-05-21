@@ -209,7 +209,7 @@ Graph::~Graph() {
 
 int func(unsigned int vMax, double distance, unsigned int c) {
 
-	return distance/vmax;
+	return distance/vMax;
 }
 
 void Graph::loadFromFile(string cidade)
@@ -379,4 +379,38 @@ Graph Graph::buildAchievableGraph() {
 	}
 
 	return newGraph;
+}
+
+void Graph::loadPeople() {
+
+    ifstream peopleFile;
+    peopleFile.open("output.txt");
+    string currentLine;
+
+    getline(peopleFile, currentLine);
+
+    while (!peopleFile.eof()) {
+
+        char tempChar;
+        string name;
+        Time time1, time2;
+        unsigned int personID,hour,minute,nodeID1,nodeID2;
+
+        getline(peopleFile, currentLine);
+        stringstream line(currentLine);
+
+        line >> tempChar >> personID >> tempChar >> name >> tempChar >> hour >> tempChar >> minute >> tempChar;
+        time1 = Time(hour,minute);
+        line >> hour >> tempChar >> minute >> tempChar;
+        time2 = Time(hour,minute);
+        line >> nodeID1 >> tempChar >> nodeID2;
+
+        Person newPerson(personID,name);
+        newPerson.setTimes(time1,time2);
+        newPerson.setNodes(nodeID1,nodeID2);
+
+        Vertex* startVertex = this->findVertex(NodeInfo(nodeID1));
+        startVertex->getInfoRef().addPerson(newPerson);
+    }
+
 }

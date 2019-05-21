@@ -39,7 +39,6 @@ class Graph {
 	int ** W = nullptr;   // dist
 	int **P = nullptr;   // path
 	int findVertexIdx(const NodeInfo &in) const;
-
 	void dfsVisit(Vertex *v, vector<NodeInfo> & res) const;
 public:
 	Vertex *findVertex(const NodeInfo &in) const;
@@ -47,10 +46,7 @@ public:
 	bool addEdge(const NodeInfo &sourc, const NodeInfo &dest, EdgeInfo w);
 	int getNumVertex() const;
 	vector<Vertex *> getVertexSet() const;
-
 	vector<NodeInfo> dfs(NodeInfo v) const;
-
-	Graph getGraphAchievableFrom(Vertex *v);
 
 	//single source
 	void dijkstraShortestPath(const NodeInfo &s);
@@ -63,9 +59,13 @@ public:
 	vector<NodeInfo> getfloydWarshallPath(const NodeInfo &origin, const NodeInfo &dest) const;
 	~Graph();
 
-	void loadFromFile(string cidade);
-	void printMatrices();
+	// new functions
+
+    Graph getGraphAchievableFrom(Vertex *v);;
 	Graph buildAchievableGraph();
+    void loadFromFile(string cidade);
+    void printMatrices();
+    void loadPeople();
 
 };
 

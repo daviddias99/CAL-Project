@@ -52,6 +52,8 @@ public:
 	double realDistanceTo(NodeInfo node) const;
 	double plotDistanceTo(NodeInfo node) const;
 
+	string getColor() const;
+
 };
 
 
