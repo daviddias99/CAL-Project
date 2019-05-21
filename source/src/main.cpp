@@ -9,7 +9,7 @@ int main() {
 	//Setup
 
 	Graph grafo, simplifiedGraph;
-	GraphViewer *gv = new GraphViewer(50000, 50000, false);
+	GraphViewer *gv = new GraphViewer(5000, 5000, false);
 
 	gv->createWindow(1200, 1200);
 	gv->defineVertexColor("blue");
