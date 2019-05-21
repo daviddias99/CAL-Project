@@ -214,6 +214,7 @@ int func(unsigned int vMax, double distance, unsigned int c) {
 
 void Graph::loadFromFile(string cidade)
 {
+    this->cidade = cidade;
 	ifstream nodeFile, edgeFile,plotFile;
 	string currentLine,currentLine2, nodePathStr_XY, nodePathStr_LL, edgePathStr;
 
@@ -286,8 +287,8 @@ void Graph::printMatrices()
 	ofstream wOutput;
 	ofstream pOutput;
 
-	wOutput.open("wFile.txt");
-	pOutput.open("pFile.txt");
+	wOutput.open("../resources/wFile.txt");
+	pOutput.open("../resources/pFile.txt");
 
 	for (int i = 0; i < vertexSet.size(); i++) {
 
@@ -384,8 +385,12 @@ Graph Graph::buildAchievableGraph() {
 void Graph::loadPeople() {
 
     ifstream peopleFile;
-    peopleFile.open("../resources/output.txt");
-    string currentLine;
+    string currentLine,peopleFilePathStr;
+    ostringstream peopleFilePath;
+
+    peopleFilePath << "../resources/persons_" << cidade << ".txt";
+    peopleFilePathStr = peopleFilePath.str();
+    peopleFile.open(peopleFilePathStr);
 
 
     while (!peopleFile.eof()) {

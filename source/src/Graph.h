@@ -33,6 +33,7 @@ class Vertex;
 
 class Graph {
 	vector<Vertex*> vertexSet;    // vertex set
+	string cidade;
 
 	Vertex * initSingleSource(const NodeInfo &orig);
 	bool relax(Vertex *v, Vertex *w, double weight);
