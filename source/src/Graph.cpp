@@ -207,9 +207,9 @@ Graph::~Graph() {
 	deleteMatrix(P, vertexSet.size());
 }
 
-int func(unsigned int vMax, double distance, unsigned int c) {
+float func(unsigned vMax, double distance, unsigned int c) {
 
-	return distance/vMax;
+	return distance/vMax*100;
 }
 
 void Graph::loadFromFile(string cidade)

@@ -26,11 +26,11 @@ int main() {
 
 	//Simplification number 1
 
-	//grafo.dfs(NodeInfo(367602529));
-	//simplifiedGraph = grafo.buildAchievableGraph();
-	loadGraphForVis(gv, grafo);
-	//simplifiedGraph.floydWarshallShortestPath();
-	//simplifiedGraph.printMatrices();
+	grafo.dfs(NodeInfo(1249745324));
+	simplifiedGraph = grafo.buildAchievableGraph();
+	loadGraphForVis(gv, simplifiedGraph);
+	simplifiedGraph.floydWarshallShortestPath();
+	simplifiedGraph.printMatrices();
 
     getchar();
 

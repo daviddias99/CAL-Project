@@ -13,7 +13,7 @@ private:
 
 public:
 
-	EdgeInfo(unsigned int ID, unsigned int vMax, double distance, unsigned int fTransito, int timeFunc(unsigned int, double, unsigned int) );
+	EdgeInfo(unsigned int ID, unsigned int vMax, double distance, unsigned int fTransito, float timeFunc(unsigned int, double, unsigned int) );
 	int getTempo() const;
 	unsigned int getID();
 

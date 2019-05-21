@@ -1,6 +1,6 @@
 #include "EdgeInfo.h"
 
-EdgeInfo::EdgeInfo(unsigned int ID, unsigned int vMax, double distance, unsigned int fTransito, int timeFunc(unsigned int, double, unsigned int))
+EdgeInfo::EdgeInfo(unsigned int ID, unsigned int vMax, double distance, unsigned int fTransito, float timeFunc(unsigned int, double, unsigned int))
 {
 	this->ID = ID;
 	this->vMax = vMax;
