@@ -37,3 +37,10 @@ unsigned int Person::getSourceNodeID() {
     return this->sourceNodeID;
 }
 
+Time Person::getMinDepartureTime(){
+    return this->minDepartureTime;
+}
+
+Time Person::getMaxArrivalTime(){
+    return this->maxArrivalTime;
+}

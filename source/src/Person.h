@@ -30,7 +30,8 @@ public:
     unsigned int getID();
     unsigned int getDestNodeID();
     unsigned int getSourceNodeID();
-
+    Time getMinDepartureTime();
+    Time getMaxArrivalTime();
 
 };
 
