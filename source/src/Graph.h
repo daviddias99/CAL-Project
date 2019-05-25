@@ -73,6 +73,9 @@ public:
     // debugging functions;
     void printDests();
 
+    //get distance between 2 vertex
+    unsigned getDist(int src, int dest);
+
 };
 
 
