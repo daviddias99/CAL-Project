@@ -10,7 +10,7 @@
 
 string cityName;
 GraphViewer* gv = NULL;
-Graph wholeMapGraph, graphAfterDFS;
+Graph wholeMapGraph, graphAfterDFS, fwGraph;
 Person driver = Person(0,"Default");
 const long long MAX_STREAM_SIZE = numeric_limits<streamsize>::max();
 
@@ -47,8 +47,8 @@ void runMainMenu() {
     while (!exit) {
 
         showMainMenu();
-
         int option;
+        char tempChar;
         cin >> option;
         cin.ignore(MAX_STREAM_SIZE, '\n');
         switch (option) {
@@ -68,12 +68,12 @@ void runMainMenu() {
                 break;
             case 5:
 
-
                 initViewer();
                 cout << "Loading whole graph for Vis..." << endl;
                 loadGraphForVis(gv,wholeMapGraph);
                 cout << "Done." << endl;
-                getchar();
+                cin >> tempChar;
+                cin.ignore(MAX_STREAM_SIZE, '\n');
                 gv->closeWindow();
                 break;
             case 6:
@@ -91,8 +91,24 @@ void runMainMenu() {
                 loadGraphForVis(gv,graphAfterDFS);
                 cout << "Done." << endl;
 
-                getchar();
+                cin >> tempChar;
+                cin.ignore(MAX_STREAM_SIZE, '\n');
                 gv->closeWindow();
+                break;
+            case 7:
+
+                initViewer(true);
+
+                cout << "Starting graph processing..." << endl;
+                graphAfterDFS.processGraph(fwGraph);
+                cout << "Done." << endl;
+                loadGraphForVis(gv,fwGraph);
+
+                cin >> tempChar;
+                cin.ignore(MAX_STREAM_SIZE, '\n');
+                gv->closeWindow();
+
+                break;
             case 0:
                 exit = true;
                 break;
@@ -118,7 +134,7 @@ void chooseDriver() {
 
     cout << "End node ID: ";
     cin >> endNodeID;
-
+    cin.ignore(MAX_STREAM_SIZE, '\n');
     driver = Person(100000000,driverName);
     driver.setNodes(startNodeID,endNodeID);
 }

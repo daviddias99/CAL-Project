@@ -380,6 +380,8 @@ void Graph::buildAchievableGraph(Graph &newGraph) {
 
                 newGraph.addEdge(vertexSet.at(i)->adj.at(j).orig->info, vertexSet.at(i)->adj.at(j).dest->info,
                                  vertexSet.at(i)->adj.at(j).info);
+                newGraph.addEdge(vertexSet.at(i)->adj.at(j).dest->info,vertexSet.at(i)->adj.at(j).orig->info,
+                                 vertexSet.at(i)->adj.at(j).info);
             }
 
         }
