@@ -18,6 +18,8 @@ void chooseCity();
 void initViewer(bool autoPosition = false);
 void generatePeople();
 void chooseDriver();
+void showWholeMap();
 void checkAlgorithm();
+bool showDFSAfterDriver();
 
 #endif //SOURCE_MENU_H

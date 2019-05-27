@@ -38,7 +38,7 @@ uint Car::getCurrentTakenSeats()
 }
 
 bool Car::isFull(){
-    return maxSeats==(currentTakenSeats+1);
+    return maxSeats==(passengers.size()+1);
 }
 void makeEmpty(priority_queue<Vertex*> &q){
     while(!q.empty()){
@@ -112,3 +112,4 @@ void Car::fillCarGreedy(Graph *graph, unsigned maxDist){
     }
 
 }
+
