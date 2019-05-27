@@ -1,9 +1,9 @@
-#include "Vertex.h"
+
 #include "Car.h"
 #include <queue>
 
 
-Car::Car(uint carID, uint driverID, uint maxSeats, Person driver)
+Car::Car(uint carID, uint driverID, uint maxSeats, Person &driver)
 {
 	this->carID = carID;
 	this->driverID = driverID;
@@ -35,14 +35,21 @@ uint Car::getCurrentTakenSeats()
 bool Car::isFull(){
     return maxSeats==(currentTakenSeats+1);
 }
-void makeEmpty(priority_queue<Vertex*> q){
-    Vertex* v;
+void makeEmpty(priority_queue<Vertex*> &q){
     while(!q.empty()){
-        v= q.pop();
+        q.pop();
     }
 }
 
-void Car::fillCarGreedy(Graph &graph, unsigned maxDist){
+double getDist(const Vertex &src, const Vertex &dest){
+    for(auto e: src.getAdj()){
+        if(e.getDest()->getInfo().getID()==dest.getInfo().getID())
+            return e.getInfo().getDistance();
+    }
+    return 0;
+}
+
+void Car::fillCarGreedy(Graph &graph, unsigned &maxDist){
     priority_queue<Vertex*> q;
     unsigned dist= maxDist;
     unsigned currentVertex = driver.getSourceNodeID();
@@ -51,7 +58,7 @@ void Car::fillCarGreedy(Graph &graph, unsigned maxDist){
     Time maxArrivalTime = driver.getMaxArrivalTime();
 
     while (!isFull()){
-        q.makeEmpty();
+        makeEmpty(q);
         for(auto v: graph.getVertexSet()){
 
         }

@@ -5,8 +5,10 @@ class Graph;
 class GraphViewer;
 
 
-
+#include <iostream>
 #include <vector>
+#include "Person.h"
+#include "Vertex.h"
 
 class Car {
 
@@ -15,16 +17,16 @@ class Car {
 	uint maxSeats;
 	uint currentTakenSeats;
 	Person driver;
-	vector<Person> passengers;
+	vector<Person*> passengers;
 
 
 public:
-	Car(uint carID,uint driverID, uint maxSeats);
+	Car(uint carID,uint driverID, uint maxSeats, Person &driver);
 
 	uint getCarID();
 	uint getDriverID();
 	uint getMaxSeats();
 	uint getCurrentTakenSeats();
     bool isFull();
-	void fillCarGreedy(Graph graph, unsigned maxDist);
+    void fillCarGreedy(Graph &graph, unsigned &maxDist);
 };

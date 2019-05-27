@@ -35,3 +35,7 @@ Vertex *Vertex::getPath() const {
 NodeInfo &Vertex::getInfoRef()  {
     return this->info;
 }
+
+vector<Edge> Vertex::getAdj() const{
+    return this->adj;
+}
