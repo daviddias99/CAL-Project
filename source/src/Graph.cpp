@@ -55,6 +55,7 @@ bool Graph::addEdge(const NodeInfo &sourc, const NodeInfo &dest, EdgeInfo w) {
 	if (v1 == nullptr || v2 == nullptr)
 		return false;
 	v1->addEdge(v2, w);
+
 	return true;
 }
 
@@ -276,6 +277,8 @@ void Graph::loadFromFile(string cidade)
 		Vertex* v2 = this->findVertex(NodeInfo(IDDest));
 
 		this->addEdge(v1->getInfo(), v2->getInfo(), EdgeInfo(ID,833,v1->getInfo().realDistanceTo(v2->getInfo()),2,func));
+        ID++;
+        this->addEdge(v2->getInfo(), v1->getInfo(), EdgeInfo(ID,833,v1->getInfo().realDistanceTo(v2->getInfo()),2,func));
 		ID++;
 	}
 
@@ -419,12 +422,10 @@ void Graph::loadPeople() {
 
 }
 
-Graph* Graph::processGraph() {
+void Graph::processGraph(Graph& newGraph) {
 
     removeInvalidPeople();
     floydWarshallShortestPath();
-
-    Graph* fwGraph = new Graph();
 
     for(int i = 0; i < this->vertexSet.size();i++){
 
@@ -434,37 +435,35 @@ Graph* Graph::processGraph() {
 
         if(!people.empty()){
 
-            fwGraph->addVertex(info);
+            newGraph.addVertex(info);
 
             for(int j = 0; j < people.size();j++){
 
 
-                fwGraph->addVertex(this->findVertex(NodeInfo(people.at(j).getDestNodeID()))->getInfo());
+                newGraph.addVertex(this->findVertex(NodeInfo(people.at(j).getDestNodeID()))->getInfo());
 
             }
         }
 
     }
 
-    for (int k = 0; k < fwGraph->vertexSet.size(); ++k) {
-        for (int i = 0; i < fwGraph->vertexSet.size(); ++i) {
+    for (int k = 0; k < newGraph.vertexSet.size(); ++k) {
+        for (int i = 0; i < newGraph.vertexSet.size(); ++i) {
 
             if(k == i)
                 continue;
 
-            Vertex* v1 = fwGraph->vertexSet.at(k);
-            Vertex* v2 = fwGraph->vertexSet.at(i);
+            Vertex* v1 = newGraph.vertexSet.at(k);
+            Vertex* v2 = newGraph.vertexSet.at(i);
             int v1Original = this->findVertex(v1->getInfo())->queueIndex;
             int v2Original = this->findVertex(v2->getInfo())->queueIndex;
 
 
             if(W[v1Original][v2Original] != INF)
-                fwGraph->addEdge(v1->getInfo(),v2->getInfo(),EdgeInfo(W[v1Original][v2Original]));
+                newGraph.addEdge(v1->getInfo(),v2->getInfo(),EdgeInfo(W[v1Original][v2Original]));
 
         }
     }
-
-    return fwGraph;
 }
 
 void Graph::removeInvalidPeople() {
@@ -497,5 +496,20 @@ void Graph::printDests() {
         }
 
     }
+
+}
+
+
+double Graph::priorityFunction(Vertex* currentVertex, Vertex* subjectVertex, Vertex* driverDestVertex){
+
+    double currentToSubjectDistance = currentVertex->getInfo().realDistanceTo(subjectVertex->getInfo());
+    double subjectToDriverDestDistance = subjectVertex->getInfo().realDistanceTo(driverDestVertex->getInfo());
+    uint subjectDestID = subjectVertex->getInfo().getPeople().at(0).getDestNodeID();
+    Vertex* subjectDestVertex = findVertex(NodeInfo(subjectDestID));
+    double subjectDestToDriverDestDistance = subjectDestVertex->getInfo().realDistanceTo(driverDestVertex->getInfo());
+
+    return 2;
+//    return currentToSubjectDistance + sub
+
 
 }

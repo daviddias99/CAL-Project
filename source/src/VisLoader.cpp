@@ -7,7 +7,7 @@
 
 
 
-void loadGraphForVis(GraphViewer* gv, string cidade) {
+bool loadGraphForVis(GraphViewer* gv, string cidade) {
 
     int minX = INF;
     int minY = INF;
@@ -29,7 +29,14 @@ void loadGraphForVis(GraphViewer* gv, string cidade) {
     edgePathStr = edgePath.str();
 
     nodeFile.open(nodePathStr_XY);
+
+    if(!nodeFile.is_open())
+        return false;
+
     edgeFile.open(edgePathStr);
+
+    if(!edgeFile.is_open())
+        return false;
 
     getline(nodeFile, currentLine);
 
@@ -56,6 +63,10 @@ void loadGraphForVis(GraphViewer* gv, string cidade) {
 
     nodeFile.close();
     nodeFile.open(nodePathStr_XY);
+
+    if(!nodeFile.is_open())
+        return false;
+
     getline(nodeFile, currentLine);
 
     while (!nodeFile.eof()) {
@@ -91,7 +102,7 @@ void loadGraphForVis(GraphViewer* gv, string cidade) {
 
     gv->rearrange();
 
-    return;
+    return true;
 
 
 }
@@ -136,13 +147,21 @@ void loadGraphForVis(GraphViewer* gv, Graph& graph) {
 
         for (size_t j = 0; j < vSet.at(i)->adj.size(); j++) {
 
-            gv->addEdge(id, vSet.at(i)->adj.at(j).orig->info.getID(), vSet.at(i)->adj.at(j).dest->info.getID(), EdgeType::DIRECTED);
+//            // this is done because of performace as the given graphs are all to be considered undirected and although the edges are stored twice in the graph
+//            // one for each direction, they can be desplayed only once (as undirected)
+//
+//            if(vSet.at(i)->adj.at(j).info.getID() % 2 == 0)
+//                continue;
 
-            int weight = (int)vSet.at(i)->adj.at(j).getWeight();
-            gv->setEdgeWeight(id,weight);
+            gv->addEdge(id, vSet.at(i)->adj.at(j).orig->info.getID(), vSet.at(i)->adj.at(j).dest->info.getID(),EdgeType::DIRECTED);
+
+            int weight = (int) vSet.at(i)->adj.at(j).getWeight();
+            gv->setEdgeWeight(id, weight);
             id++;
         }
     }
+
+
 
     gv->rearrange();
 }

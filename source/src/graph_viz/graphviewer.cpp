@@ -5,7 +5,7 @@
 #ifdef linux
 pid_t GraphViewer::procId = NULL;
 #endif
-short GraphViewer::port = 7772;
+short GraphViewer::port = 77720;
 
 GraphViewer::GraphViewer(int width, int height, bool dynamic) {
 	initialize(width, height, dynamic, GraphViewer::port);
