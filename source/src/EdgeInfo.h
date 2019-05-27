@@ -17,5 +17,6 @@ public:
 	EdgeInfo(int tempo );
 	int getTempo() const;
 	unsigned int getID();
+	double getDistance() const;
 
 };

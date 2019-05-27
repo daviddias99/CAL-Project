@@ -25,3 +25,7 @@ EdgeInfo::EdgeInfo(int tempo) {
     this->tempo = tempo;
 
 }
+
+double EdgeInfo::getDistance() const{
+    return distance;
+}

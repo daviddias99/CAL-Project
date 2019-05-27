@@ -35,3 +35,16 @@ Vertex *Vertex::getPath() const {
 NodeInfo &Vertex::getInfoRef()  {
     return this->info;
 }
+
+vector<Edge> Vertex::getAdj() const{
+    return this->adj;
+}
+
+void Vertex::removePerson(Person person) {
+    this->info.removePerson(person.getID());
+}
+
+bool Vertex::fillGreedyComparable(Vertex &vertex) const {
+    //dist= getDist()
+    return false;
+}
