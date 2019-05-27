@@ -13,7 +13,7 @@
 #define NODE_XY_FILE_PATH "/T01_nodes_X_Y_"
 #define NODE_LL_FILE_PATH "/T01_nodes_lat_lon_"
 
-void loadGraphForVis(GraphViewer* gv, string cidade);
+bool loadGraphForVis(GraphViewer* gv, string cidade);
 void loadGraphForVis(GraphViewer* gv, Graph& graph);
 
 #endif //SOURCE_VISLOADER_H

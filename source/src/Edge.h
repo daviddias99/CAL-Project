@@ -23,4 +23,6 @@ public:
 
 	// Fp07
 	double getWeight() const;
+	Vertex* getDest();
+	EdgeInfo getInfo();
 };

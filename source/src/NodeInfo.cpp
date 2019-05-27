@@ -103,3 +103,7 @@ vector<Person> NodeInfo::getPeople() {
 
     return this->persons;
 }
+
+Person NodeInfo::getMinPerson() {
+    return minPerson;
+}

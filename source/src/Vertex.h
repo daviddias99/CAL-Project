@@ -33,4 +33,7 @@ public:
 	friend class Graph;
 	friend class MutablePriorityQueue<Vertex>;
 	friend void loadGraphForVis(GraphViewer* gv, Graph& graph);
+	vector<Edge> getAdj() const;
+	void removePerson(Person person);
+	bool fillGreedyComparable(Vertex & vertex) const;
 };

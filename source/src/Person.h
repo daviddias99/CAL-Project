@@ -12,7 +12,7 @@ class Person {
 
 private:
 
-    unsigned int ID;
+    int ID;
     string name;
     Time minDepartureTime;
     Time maxArrivalTime;
@@ -23,14 +23,15 @@ private:
 public:
 
 
-    Person(unsigned int ID, string name);
+    Person(int ID = -1, string name = "DEFAULT");
 
     void setTimes(Time minDep,Time maxArr);
     void setNodes(unsigned int sourceID, unsigned int destID );
     unsigned int getID();
     unsigned int getDestNodeID();
     unsigned int getSourceNodeID();
-
+    Time getMinDepartureTime();
+    Time getMaxArrivalTime();
 
 };
 

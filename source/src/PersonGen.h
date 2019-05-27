@@ -15,6 +15,6 @@
 
 using namespace std;
 
-void genPeople(unsigned int amount, string cidade);
+unsigned int genPeople(unsigned int amount, string cidade);
 
 #endif //SOURCE_PERSONGEN_H

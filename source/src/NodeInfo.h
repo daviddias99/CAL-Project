@@ -37,6 +37,7 @@ private:
     unsigned int ID;
     coordinates_t map_coords;
 	plotPos_t plot_coords;
+	Person minPerson;
 
 public:
 
@@ -52,7 +53,7 @@ public:
 	bool operator==(const NodeInfo& node) const;
 	double realDistanceTo(NodeInfo node) const;
 	double plotDistanceTo(NodeInfo node) const;
-
+    Person getMinPerson();
 	string getColor() const;
 
 };
