@@ -60,21 +60,20 @@ public:
 	vector<NodeInfo> getfloydWarshallPath(const NodeInfo &origin, const NodeInfo &dest) const;
 	~Graph();
 
-	// new functions
+	//algorithms
 
-    Graph getGraphAchievableFrom(Vertex *v);;
-	Graph buildAchievableGraph();
     void loadFromFile(string cidade);
-    void printMatrices();
     void loadPeople();
-    Graph* processGraph();
+    void buildAchievableGraph(Graph& newGraph);
+    void processGraph(Graph& newGraph);
     void removeInvalidPeople();
 
     // debugging functions;
     void printDests();
+    void printMatrices();
 
-    //get distance between 2 vertex
-    unsigned getDist(int src, int dest);
+
+    double priorityFunction(Vertex* currentVertex, Vertex* subjectVertex, Vertex* destVertex);
 
 };
 
