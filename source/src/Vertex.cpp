@@ -48,3 +48,7 @@ bool Vertex::fillGreedyComparable(Vertex &vertex) const {
     //dist= getDist()
     return false;
 }
+
+bool Vertex::isVisited() const {
+    return visited;
+}

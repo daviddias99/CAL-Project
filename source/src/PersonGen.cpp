@@ -11,7 +11,7 @@ int randomBetween(int a, int b){
 #define NODE_XY_FILE_PATH "/T01_nodes_X_Y_"
 #define NODE_LL_FILE_PATH "/T01_nodes_lat_lon_"
 
-void genPeople(unsigned int amount, string cidade) {
+unsigned int genPeople(unsigned int amount, string cidade) {
 
     vector<string> names;
 
@@ -60,6 +60,8 @@ void genPeople(unsigned int amount, string cidade) {
         nodeIDs.push_back(ID);
     }
 
+    int destID = nodeIDs.at(randomBetween(0,nodeIDs.size()-1));
+
     for(int i = 0; i < amount; i++){
 
         string newLine = "( " + to_string(i) + " , ";
@@ -78,9 +80,10 @@ void genPeople(unsigned int amount, string cidade) {
         else
             newLine += to_string(hour1) + ":" + to_string(minute1) + " , ";
         newLine += to_string(hour2) + ":" + to_string(minute2) + " , ";
-        newLine += to_string(nodeIDs.at(randomBetween(0,nodeIDs.size()-1))) + " , " + to_string(nodeIDs.at(randomBetween(0,nodeIDs.size()-1)))  + " )";
+        newLine += to_string(nodeIDs.at(randomBetween(0,nodeIDs.size()-1))) + " , " + to_string(destID)  + " )";
 
         output << newLine << endl;
     }
 
+    return destID;
 }

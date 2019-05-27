@@ -13,6 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a0bac137-5e33-4aec-893a-ae5d6a271db5" name="Default Changelist" comment="">
 <<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+=======
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graph.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PersonGen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersonGen.cpp" afterDir="false" />
@@ -30,6 +33,7 @@
       <change beforePath="$PROJECT_DIR$/src/graph_viz/graphviewer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/graph_viz/graphviewer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
 >>>>>>> 39e755f77c8923c6b490e89081f5961b42317d6d
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,6 +63,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+=======
         <entry file="file://$PROJECT_DIR$/src/Graph.cpp">
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -120,11 +130,18 @@
             <state relative-caret-position="638">
               <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
 >>>>>>> 39e755f77c8923c6b490e89081f5961b42317d6d
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/src/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+=======
 <<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/resources/persons_Porto.txt">
           <provider selected="true" editor-type-id="LargeFileEditor" />
@@ -156,6 +173,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="232">
               <caret line="8" selection-start-line="8" selection-end-line="8" />
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -164,6 +182,8 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+=======
       <file pinned="false" current-in-tab="false">
 <<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/NodeInfo.h">
@@ -219,6 +239,7 @@
           </provider>
         </entry>
       </file>
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -241,6 +262,11 @@
         <option value="$PROJECT_DIR$/graph_viz/graphviewer.cpp" />
         <option value="$PROJECT_DIR$/src/Vertex.cpp" />
         <option value="$PROJECT_DIR$/src/Vertex.h" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/graph_viz/graphviewer.cpp" />
+        <option value="$PROJECT_DIR$/src/VisLoader.h" />
+=======
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
         <option value="$PROJECT_DIR$/src/PersonGen.h" />
         <option value="$PROJECT_DIR$/src/NodeInfo.h" />
         <option value="$PROJECT_DIR$/src/NodeInfo.cpp" />
@@ -264,8 +290,11 @@
         <option value="$PROJECT_DIR$/src/graph_viz/graphviewer.cpp" />
         <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+<<<<<<< HEAD
+=======
         <option value="$PROJECT_DIR$/src/Graph.h" />
 >>>>>>> 39e755f77c8923c6b490e89081f5961b42317d6d
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
       </list>
     </option>
   </component>
@@ -299,24 +328,21 @@
             <path>
               <item name="source" type="b2602c69:ProjectViewProjectNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+=======
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="source" type="b2602c69:ProjectViewProjectNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
               <item name="mapas" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="source" type="b2602c69:ProjectViewProjectNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="source" type="b2602c69:ProjectViewProjectNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="graph_viz" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -390,10 +416,14 @@
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+    <option name="totallyTimeSpent" value="26505000" />
+=======
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="45575000" />
 =======
     <option name="totallyTimeSpent" value="42533000" />
 >>>>>>> 39e755f77c8923c6b490e89081f5961b42317d6d
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -405,25 +435,41 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12473348" />
+=======
     <frame x="0" y="0" width="3840" height="2084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18409818" />
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
 <<<<<<< HEAD
       <window_info anchor="bottom" id="Find" order="1" />
+<<<<<<< HEAD
+      <window_info anchor="bottom" id="Run" order="2" weight="0.19629225" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36205018" />
+=======
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.60523444" />
 =======
       <window_info anchor="bottom" id="Find" order="1" weight="0.32968238" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.7371865" />
 >>>>>>> 39e755f77c8923c6b490e89081f5961b42317d6d
       <window_info anchor="bottom" id="Debug" order="3" weight="0.24100327" />
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3293348" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
+<<<<<<< HEAD
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.35427952" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.259542" />
+=======
 <<<<<<< HEAD
       <window_info anchor="bottom" id="Messages" order="8" weight="0.47328246" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.4950927" />
@@ -431,6 +477,7 @@
       <window_info anchor="bottom" id="Messages" order="8" weight="0.4731654" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.032715376" />
 >>>>>>> 39e755f77c8923c6b490e89081f5961b42317d6d
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.32694414" />
@@ -528,13 +575,22 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/resources/output.txt" />
+    <entry file="file://$PROJECT_DIR$/src/PersonGen.h">
+=======
     <entry file="file://$PROJECT_DIR$/src/util.cpp">
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
           <caret line="115" column="6" selection-start-line="115" selection-start-column="6" selection-end-line="115" selection-end-column="6" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file:///usr/include/c++/7/bits/stl_vector.h" />
+    <entry file="file://$PROJECT_DIR$/src/PersonGen.cpp">
+=======
     <entry file="file://$PROJECT_DIR$/resources/persons_Fafe.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3555" />
@@ -548,6 +604,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Car.cpp">
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
@@ -563,6 +620,8 @@
     <entry file="file://$PROJECT_DIR$/resources/wFile.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/src/graph_viz/connection.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1005">
@@ -570,6 +629,7 @@
         </state>
       </provider>
     </entry>
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
     <entry file="file://$PROJECT_DIR$/src/VisLoader.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -756,6 +816,9 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/resources/persons_Viveu.txt" />
+=======
     <entry file="file://$PROJECT_DIR$/src/PersonGen.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
@@ -763,23 +826,36 @@
         </state>
       </provider>
     </entry>
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
 =======
     <entry file="file://$PROJECT_DIR$/src/Graph.h">
 >>>>>>> 39e755f77c8923c6b490e89081f5961b42317d6d
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="153">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+=======
         <state relative-caret-position="1257">
           <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
           <folding>
             <element signature="e#52#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+=======
     <entry file="file://$PROJECT_DIR$/src/Graph.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="418" column="23" lean-forward="true" selection-start-line="418" selection-start-column="23" selection-end-line="418" selection-end-column="23" />
+>>>>>>> 6355d212028bfa5cae80f7392758528714af338a
         </state>
       </provider>
     </entry>

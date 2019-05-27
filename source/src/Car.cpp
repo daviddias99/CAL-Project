@@ -39,7 +39,9 @@ uint Car::getCurrentTakenSeats()
 }
 
 bool Car::isFull(){
+
     return maxSeats==currentTakenSeats;
+
 }
 void makeEmpty(priority_queue<Vertex*> &q){
     while(!q.empty()){
@@ -124,5 +126,9 @@ vector<Person> Car::fillCarGreedy(Graph *graph, unsigned maxDist){
         if (q.empty())
             return passengers;
     }
+
     return passengers;
 }
+
+
+

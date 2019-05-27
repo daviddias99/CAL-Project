@@ -10,10 +10,12 @@
 #include "Car.h"
 
 string cityName;
-GraphViewer* gv = NULL;
+GraphViewer *gv = NULL;
 Graph wholeMapGraph, graphAfterDFS, fwGraph;
-Person driver = Person(0,"Default");
+Person driver = Person(0, "Default");
+unsigned int driverDestNodeID;
 const long long MAX_STREAM_SIZE = numeric_limits<streamsize>::max();
+bool generated = false;
 
 void showMainMenu() {
 
@@ -32,7 +34,7 @@ void showMainMenu() {
     cout << " 4- Choose driver info" << endl;
     cout << " 5- Show whole map" << endl;
     cout << " 6- Show graph after driver DFS" << endl;
-    cout << " 7- Run Algorithm "<< endl;
+    cout << " 7- Run Algorithm " << endl;
     cout << " 0- Exit" << endl;
 
     cout << endl;
@@ -69,54 +71,42 @@ void runMainMenu() {
                 break;
             case 5:
 
-                initViewer();
-                cout << "Loading whole graph for Vis..." << endl;
-                loadGraphForVis(gv,wholeMapGraph);
-                cout << "Done." << endl;
-                cin >> tempChar;
-                cin.ignore(MAX_STREAM_SIZE, '\n');
-                gv->closeWindow();
+                showWholeMap();
                 break;
             case 6:
 
-                initViewer();
-
-                cout << "Starting DFS..." << endl;
-                wholeMapGraph.dfs(NodeInfo(driver.getSourceNodeID()));
-                cout << "Done." << endl;
-                cout << "Building achievable graph..." << endl;
-                wholeMapGraph.buildAchievableGraph(graphAfterDFS);
-                cout << "Done." << endl;
-
-                cout << "Loading achievable graph for Vis..." << endl;
-                loadGraphForVis(gv,graphAfterDFS);
-                cout << "Done." << endl;
-
-                cin >> tempChar;
-                cin.ignore(MAX_STREAM_SIZE, '\n');
-                gv->closeWindow();
+                exit = showDFSAfterDriver();
                 break;
+<<<<<<< HEAD
                 /**
+=======
+
+>>>>>>> ce80c587109237e4d8190e3f7d9baf91cdb4f2af
             case 7:
+                checkAlgorithm();
+                break;
+            case 8:
 
                 initViewer(true);
 
                 cout << "Starting graph processing..." << endl;
                 graphAfterDFS.processGraph(fwGraph);
                 cout << "Done." << endl;
-                loadGraphForVis(gv,fwGraph);
+                loadGraphForVis(gv, fwGraph);
 
                 cin >> tempChar;
                 cin.ignore(MAX_STREAM_SIZE, '\n');
                 gv->closeWindow();
 
                 break;
+<<<<<<< HEAD
                  **/
             case 7:
                 checkAlgorithm();
 
+=======
+>>>>>>> ce80c587109237e4d8190e3f7d9baf91cdb4f2af
 
-                break;
             case 0:
                 exit = true;
                 break;
@@ -128,32 +118,50 @@ void runMainMenu() {
 
 void chooseDriver() {
 
-    unsigned int startNodeID,endNodeID;
+    unsigned int startNodeID, endNodeID, startHour,startMinute,endHour,endMinute;
     string driverName;
 
     cout << "-- Driver Selection --" << endl << endl;
 
     cout << "Driver name: ";
 
-    getline(cin,driverName);
+    getline(cin, driverName);
 
     cout << "Start node ID: ";
-    cin >>startNodeID;
+    cin >> startNodeID;
 
-    cout << "End node ID: ";
-    cin >> endNodeID;
+    if (!generated) {
+
+        cout << "End node ID (must be the same as the destinations of the people in graph): ";
+        cin >> endNodeID;
+        driverDestNodeID = endNodeID;
+    }
+
     cin.ignore(MAX_STREAM_SIZE, '\n');
+<<<<<<< HEAD
     driver = Person(100000000,driverName);
     driver.setNodes(startNodeID,endNodeID);
     driver.setTimes(Time(00,00,00), Time(23,59,00));
     Vertex *startVertex = wholeMapGraph.findVertex(NodeInfo(startNodeID)); //add driver to graph
     startVertex->getInfoRef().addPerson(driver);
+=======
+    cout << "Start hour and minute: ";
+    cin >> startHour >> startMinute;
+
+    cout << "End hour and minute: ";
+    cin >> endHour >> endMinute;
+
+    driver = Person(-1, driverName);
+    driver.setNodes(startNodeID, driverDestNodeID);
+    driver.setTimes(Time(startHour,startMinute),Time(endHour,endMinute));
+
+>>>>>>> ce80c587109237e4d8190e3f7d9baf91cdb4f2af
 }
 
 void chooseCity() {
 
     cout << "Please enter a city: ";
-    getline(cin,cityName);
+    getline(cin, cityName);
     cout << "Loading Map to graph..." << endl;
     wholeMapGraph.loadFromFile(cityName);
     cout << "Done." << endl;
@@ -161,7 +169,7 @@ void chooseCity() {
 
 void initViewer(bool autoPosition) {
 
-    delete(gv);
+    delete (gv);
     gv = new GraphViewer(10000, 10000, autoPosition);
     gv->defineVertexColor("blue");
     gv->defineEdgeColor("black");
@@ -169,17 +177,18 @@ void initViewer(bool autoPosition) {
 
 }
 
-void generatePeople(){
+void generatePeople() {
 
     int amount;
     cout << "How many people ";
     cin >> amount;
     cin.ignore(MAX_STREAM_SIZE, '\n');
-    genPeople(amount,cityName);
+    driverDestNodeID = genPeople(amount, cityName);
     cout << "Done." << endl;
+    generated = true;
 }
 
-void checkAlgorithm(){
+void checkAlgorithm() {
 
     wholeMapGraph.dfs(NodeInfo(driver.getSourceNodeID()));
     wholeMapGraph.buildAchievableGraph(graphAfterDFS);
@@ -192,4 +201,52 @@ void checkAlgorithm(){
     for(auto p: passengers)
         cout<< "Passenger id: " <<p.getID()<<", name: "<< p.getName()<<endl;
 
+
+}
+
+void showWholeMap() {
+
+    char tempChar;
+    initViewer();
+    cout << "Loading whole graph for Vis..." << endl;
+    loadGraphForVis(gv, wholeMapGraph);
+    cout << "Done." << endl;
+    cin >> tempChar;
+    cin.ignore(MAX_STREAM_SIZE, '\n');
+    gv->closeWindow();
+}
+
+bool showDFSAfterDriver() {
+
+    char tempChar;
+    initViewer();
+
+    cout << "Starting DFS..." << endl;
+    wholeMapGraph.dfs(NodeInfo(driver.getSourceNodeID()));
+    cout << "Done." << endl;
+    cout << "Building achievable graph..." << endl;
+
+
+    Vertex *destVertex = wholeMapGraph.findVertex(NodeInfo(driverDestNodeID));
+
+    if (!destVertex->isVisited()) {
+
+        cout << "The driver's destination isn't reachable from his starting position. Exiting..." << endl;
+        return true;
+    }
+
+    wholeMapGraph.buildAchievableGraph(graphAfterDFS);
+    cout << "Done." << endl;
+
+    cout << "Loading achievable graph for Vis..." << endl;
+    loadGraphForVis(gv, graphAfterDFS);
+    cout << "Done." << endl;
+    gv->setVertexColor(driver.getSourceNodeID(), "PINK");
+    gv->setVertexColor(driverDestNodeID, "MAGENTA");
+    cin >> tempChar;
+    cin.ignore(MAX_STREAM_SIZE, '\n');
+    gv->closeWindow();
+
+    return false;
+>>>>>>> ce80c587109237e4d8190e3f7d9baf91cdb4f2af
 }

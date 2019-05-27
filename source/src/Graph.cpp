@@ -251,7 +251,7 @@ vector<NodeInfo> Graph::getfloydWarshallPath(const NodeInfo &orig, const NodeInf
 
 float edgeWeightFunc(unsigned vMax, double distance, unsigned int c) {
 
-    return distance / vMax * 100;
+    return distance / vMax;
 }
 
 void Graph::loadFromFile(string cidade) {
@@ -392,7 +392,6 @@ void Graph::buildAchievableGraph(Graph &newGraph) {
 
 void Graph::processGraph(Graph &newGraph) {
 
-    removeInvalidPeople();
     floydWarshallShortestPath();
 
     for (int i = 0; i < this->vertexSet.size(); i++) {
