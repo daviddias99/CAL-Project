@@ -7,6 +7,7 @@
 #include "Graph.h"
 #include "PersonGen.h"
 #include "VisLoader.h"
+#include "Car.h"
 
 string cityName;
 GraphViewer* gv = NULL;
@@ -110,6 +111,11 @@ void runMainMenu() {
                 gv->closeWindow();
 
                 break;
+            case 7:
+                checkAlgorithm();
+
+
+                break;
             case 0:
                 exit = true;
                 break;
@@ -167,4 +173,19 @@ void generatePeople(){
     cin.ignore(MAX_STREAM_SIZE, '\n');
     destNodeID = genPeople(amount,cityName);
     cout << "Done." << endl;
+}
+
+void checkAlgorithm(){
+
+    wholeMapGraph.dfs(NodeInfo(driver.getSourceNodeID()));
+    wholeMapGraph.buildAchievableGraph(graphAfterDFS);
+    Graph graph3;
+    graphAfterDFS.processGraph(graph3);
+    Car car1=Car(0,4,driver);
+    car1.fillCarGreedy(&graph3, 10000);
+    vector<Person> passengers;
+    cout<< passengers.size()<<endl;
+    for(auto p: passengers)
+        cout<< "Passenger id: " <<p.getID()<<endl;
+    cout<< "finished"<<endl;
 }

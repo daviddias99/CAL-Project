@@ -18,6 +18,6 @@ void chooseCity();
 void initViewer(bool autoPosition = false);
 void generatePeople();
 void chooseDriver();
-
+void checkAlgorithm();
 
 #endif //SOURCE_MENU_H
