@@ -13,3 +13,4 @@ add_executable(source src/main.cpp
         src/Edge.h src/EdgeInfo.h src/Exceptions.h src/Graph.h src/NodeInfo.h src/Person.h src/Vertex.h src/graph_viz/connection.h src/graph_viz/graphviewer.h src/util.cpp src/util.h
         src/VisLoader.h src/VisLoader.cpp src/PersonGen.h src/PersonGen.cpp src/Car.h src/Car.cpp src/Menu.h src/Menu.cpp)
 
+

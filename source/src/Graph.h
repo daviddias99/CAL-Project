@@ -72,7 +72,9 @@ public:
     void printDests();
     void printMatrices();
 
+
     double priorityFunction(Vertex* currentVertex, Vertex* subjectVertex, Vertex* destVertex);
+
 };
 
 

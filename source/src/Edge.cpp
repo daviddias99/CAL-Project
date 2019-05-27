@@ -8,3 +8,10 @@ double Edge::getWeight() const {
 	return info.getTempo();
 }
 
+Vertex* Edge::getDest(){
+    return this->dest;
+}
+
+EdgeInfo Edge::getInfo(){
+    return this->info;
+}
