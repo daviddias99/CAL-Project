@@ -77,11 +77,8 @@ void runMainMenu() {
 
                 exit = showDFSAfterDriver();
                 break;
-<<<<<<< HEAD
                 /**
-=======
 
->>>>>>> ce80c587109237e4d8190e3f7d9baf91cdb4f2af
             case 7:
                 checkAlgorithm();
                 break;
@@ -99,13 +96,12 @@ void runMainMenu() {
                 gv->closeWindow();
 
                 break;
-<<<<<<< HEAD
+
                  **/
             case 7:
                 checkAlgorithm();
 
-=======
->>>>>>> ce80c587109237e4d8190e3f7d9baf91cdb4f2af
+
 
             case 0:
                 exit = true;
@@ -138,13 +134,13 @@ void chooseDriver() {
     }
 
     cin.ignore(MAX_STREAM_SIZE, '\n');
-<<<<<<< HEAD
+/*
     driver = Person(100000000,driverName);
     driver.setNodes(startNodeID,endNodeID);
     driver.setTimes(Time(00,00,00), Time(23,59,00));
     Vertex *startVertex = wholeMapGraph.findVertex(NodeInfo(startNodeID)); //add driver to graph
     startVertex->getInfoRef().addPerson(driver);
-=======
+*/
     cout << "Start hour and minute: ";
     cin >> startHour >> startMinute;
 
@@ -154,8 +150,9 @@ void chooseDriver() {
     driver = Person(-1, driverName);
     driver.setNodes(startNodeID, driverDestNodeID);
     driver.setTimes(Time(startHour,startMinute),Time(endHour,endMinute));
+    Vertex *startVertex = wholeMapGraph.findVertex(NodeInfo(startNodeID)); //add driver to graph
+    startVertex->getInfoRef().addPerson(driver);
 
->>>>>>> ce80c587109237e4d8190e3f7d9baf91cdb4f2af
 }
 
 void chooseCity() {
@@ -248,5 +245,4 @@ bool showDFSAfterDriver() {
     gv->closeWindow();
 
     return false;
->>>>>>> ce80c587109237e4d8190e3f7d9baf91cdb4f2af
 }
