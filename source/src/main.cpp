@@ -7,7 +7,6 @@
 
 int main() {
 
-    initViewer();
     runMainMenu();
 
 	return 0;

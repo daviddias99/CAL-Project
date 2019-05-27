@@ -9,7 +9,7 @@
 #include "VisLoader.h"
 
 string cityName;
-GraphViewer* gv;
+GraphViewer* gv = NULL;
 Graph wholeMapGraph, graphAfterDFS;
 Person driver = Person(0,"Default");
 const long long MAX_STREAM_SIZE = numeric_limits<streamsize>::max();
@@ -68,10 +68,8 @@ void runMainMenu() {
                 break;
             case 5:
 
-                delete(gv);
-                initViewer();
 
-                gv->createWindow(1200, 1200);
+                initViewer();
                 cout << "Loading whole graph for Vis..." << endl;
                 loadGraphForVis(gv,wholeMapGraph);
                 cout << "Done." << endl;
@@ -79,16 +77,16 @@ void runMainMenu() {
                 gv->closeWindow();
                 break;
             case 6:
-                delete(gv);
+
                 initViewer();
 
                 cout << "Starting DFS..." << endl;
                 wholeMapGraph.dfs(NodeInfo(driver.getSourceNodeID()));
                 cout << "Done." << endl;
                 cout << "Building achievable graph..." << endl;
-                graphAfterDFS = wholeMapGraph.buildAchievableGraph();
+                wholeMapGraph.buildAchievableGraph(graphAfterDFS);
                 cout << "Done." << endl;
-                gv->createWindow(1200, 1200);
+
                 cout << "Loading achievable graph for Vis..." << endl;
                 loadGraphForVis(gv,graphAfterDFS);
                 cout << "Done." << endl;
@@ -136,10 +134,11 @@ void chooseCity() {
 
 void initViewer(bool autoPosition) {
 
+    delete(gv);
     gv = new GraphViewer(10000, 10000, autoPosition);
     gv->defineVertexColor("blue");
     gv->defineEdgeColor("black");
-
+    gv->createWindow(1200, 1200);
 
 }
 
