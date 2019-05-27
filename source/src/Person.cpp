@@ -33,6 +33,10 @@ unsigned int Person::getDestNodeID() {
     return this->destNodeID;
 }
 
+string Person::getName(){
+    return this->name;
+}
+
 unsigned int Person::getSourceNodeID() {
     return this->sourceNodeID;
 }
@@ -43,5 +47,10 @@ Time Person::getMinDepartureTime(){
 
 Time Person::getMaxArrivalTime(){
     return this->maxArrivalTime;
+}
+
+bool Person::operator==(const Person &person) {
+    return (this->ID==person.ID);
+
 }
 

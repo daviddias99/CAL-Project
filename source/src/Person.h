@@ -30,8 +30,10 @@ public:
     unsigned int getID();
     unsigned int getDestNodeID();
     unsigned int getSourceNodeID();
+    string getName();
     Time getMinDepartureTime();
     Time getMaxArrivalTime();
+    bool operator==(const Person & person);
 
 };
 

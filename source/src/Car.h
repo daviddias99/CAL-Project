@@ -16,7 +16,7 @@ class Car {
 	uint maxSeats;
 	uint currentTakenSeats;
 	Person driver;
-	vector<Person> passengers;
+	//vector<Person> passengers;
 
 
 public:
@@ -27,8 +27,8 @@ public:
 	uint getMaxSeats();
 	uint getCurrentTakenSeats();
     bool isFull();
-    void fillCarGreedy(Graph *graph, unsigned maxDist);
-    vector<Person> getPassengers();
+    vector<Person> fillCarGreedy(Graph *graph, unsigned maxDist);
+    //vector<Person> getPassengers();
 };
 
 /*

@@ -96,6 +96,7 @@ void runMainMenu() {
                 cin.ignore(MAX_STREAM_SIZE, '\n');
                 gv->closeWindow();
                 break;
+                /**
             case 7:
 
                 initViewer(true);
@@ -110,6 +111,7 @@ void runMainMenu() {
                 gv->closeWindow();
 
                 break;
+                 **/
             case 7:
                 checkAlgorithm();
 
@@ -143,6 +145,9 @@ void chooseDriver() {
     cin.ignore(MAX_STREAM_SIZE, '\n');
     driver = Person(100000000,driverName);
     driver.setNodes(startNodeID,endNodeID);
+    driver.setTimes(Time(00,00,00), Time(23,59,00));
+    Vertex *startVertex = wholeMapGraph.findVertex(NodeInfo(startNodeID)); //add driver to graph
+    startVertex->getInfoRef().addPerson(driver);
 }
 
 void chooseCity() {
@@ -181,10 +186,10 @@ void checkAlgorithm(){
     Graph graph3;
     graphAfterDFS.processGraph(graph3);
     Car car1=Car(0,4,driver);
-    car1.fillCarGreedy(&graph3, 10000);
-    vector<Person> passengers;
-    cout<< passengers.size()<<endl;
+
+    vector<Person> passengers=car1.fillCarGreedy(&graph3, 10000);
+    cout<< "Passengers:"<<endl;
     for(auto p: passengers)
-        cout<< "Passenger id: " <<p.getID()<<endl;
-    cout<< "finished"<<endl;
+        cout<< "Passenger id: " <<p.getID()<<", name: "<< p.getName()<<endl;
+
 }
