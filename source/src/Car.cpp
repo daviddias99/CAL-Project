@@ -89,7 +89,7 @@ void Car::fillCarGreedy(Graph *graph, unsigned maxDist){
 
         while(!q.empty()){
             u= q.top();
-            uPerson= u->getInfo().getMinPerson();
+            uPerson= u->getInfo().getPeople()[0];
             uPersonMaxArrival=uPerson.getMaxArrivalTime();
             q.pop();
             timeCurrentToU=getTime(currentVertex, u, VELOCITY);
