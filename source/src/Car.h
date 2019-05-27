@@ -27,7 +27,8 @@ public:
 	uint getMaxSeats();
 	uint getCurrentTakenSeats();
     bool isFull();
-    void fillCarGreedy(Graph &graph, unsigned &maxDist);
+    void fillCarGreedy(Graph *graph, unsigned maxDist);
+    vector<Person> getPassengers();
 };
 
 /*

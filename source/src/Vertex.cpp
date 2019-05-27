@@ -43,3 +43,8 @@ vector<Edge> Vertex::getAdj() const{
 void Vertex::removePerson(Person person) {
     this->info.removePerson(person.getID());
 }
+
+bool Vertex::fillGreedyComparable(Vertex &vertex) const {
+    //dist= getDist()
+    return false;
+}

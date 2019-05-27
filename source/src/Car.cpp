@@ -18,6 +18,10 @@ uint Car::getCarID()
 	return this->carID;
 }
 
+vector<Person> Car::getPassengers(){
+    return this->passengers;
+}
+
 uint Car::getDriverID()
 {
 	return this->driver.getID();
@@ -61,11 +65,11 @@ double getTime(Vertex* src, Vertex* dest, const double &velocity){
 
 
 
-void Car::fillCarGreedy(Graph &graph, unsigned &maxDist){
+void Car::fillCarGreedy(Graph *graph, unsigned maxDist){
     priority_queue<Vertex*> q;
     unsigned dist= maxDist;
-    Vertex* currentVertex =graph.findVertex(driver.getSourceNodeID());
-    Vertex* dest =graph.findVertex(driver.getDestNodeID());
+    Vertex* currentVertex =graph->findVertex(driver.getSourceNodeID());
+    Vertex* dest =graph->findVertex(driver.getDestNodeID());
     Time currentTime = driver.getMinDepartureTime();
     Time maxArrivalTime = driver.getMaxArrivalTime();
     Time supposeArrival;
@@ -77,11 +81,9 @@ void Car::fillCarGreedy(Graph &graph, unsigned &maxDist){
 
     while (!isFull()){
         makeEmpty(q);
-        for(auto v: graph.getVertexSet()){
-            if(getDist(currentVertex, v)<maxDist) {
-                for (auto p:v->getInfo().getPeople()) {
-                    //mandar queu
-                }
+        for(auto v: graph->getVertexSet()){
+            if(v->getInfo().getPeople().size()!=0 && getDist(currentVertex, v)<maxDist) { //check if there's at least one person in vertex and if vertex is within searchable distance
+                q.push(v);
             }
         }
 
