@@ -39,3 +39,7 @@ NodeInfo &Vertex::getInfoRef()  {
 vector<Edge> Vertex::getAdj() const{
     return this->adj;
 }
+
+void Vertex::removePerson(Person person) {
+    this->info.removePerson(person.getID());
+}

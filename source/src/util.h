@@ -101,6 +101,7 @@ public:
     friend ostream& operator<<(ostream& os, const Time& d);
 
 	Time operator+(Time& time2);
+	Time operator+(double minutes);
 
 	bool operator<(Time &time2);
 

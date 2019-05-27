@@ -58,30 +58,23 @@ double getTime(Vertex* src, Vertex* dest, const double &velocity){
     return INF;
 }
 
-Time addTime(Time t, double minutes){
-    Time final;
-    unsigned h= t.getHora();
-    unsigned m= t.getMin();
-    unsigned s= t.getSeg();
-    h+=minutes/60;
-    m+= (int)minutes%60;
-    final=Time(h,m,s);
-    return final;
-}
+
 
 
 void Car::fillCarGreedy(Graph &graph, unsigned &maxDist){
     priority_queue<Vertex*> q;
     unsigned dist= maxDist;
     Vertex* currentVertex =graph.findVertex(driver.getSourceNodeID());
-    //unsigned dest= driver.getDestNodeID();
     Vertex* dest =graph.findVertex(driver.getDestNodeID());
     Time currentTime = driver.getMinDepartureTime();
     Time maxArrivalTime = driver.getMaxArrivalTime();
     Time supposeArrival;
-    //candidateVertex candidate;
-    //candidate.driverDest= dest;
+    Time uPersonMaxArrival;
+    double timeCurrentToU;
     Vertex* u;
+    Person uPerson;
+
+
     while (!isFull()){
         makeEmpty(q);
         for(auto v: graph.getVertexSet()){
@@ -94,9 +87,26 @@ void Car::fillCarGreedy(Graph &graph, unsigned &maxDist){
 
         while(!q.empty()){
             u= q.top();
+            uPerson= u->getInfo().getMinPerson();
+            uPersonMaxArrival=uPerson.getMaxArrivalTime();
             q.pop();
-            supposeArrival= addTime(currentTime, (getTime(currentVertex, u, VELOCITY)+getTime(u,dest,VELOCITY)));
+            timeCurrentToU=getTime(currentVertex, u, VELOCITY);
+            supposeArrival= currentTime + (timeCurrentToU+getTime(u,dest, VELOCITY));
+            if (supposeArrival< maxArrivalTime && supposeArrival<uPersonMaxArrival){
+                currentTime= currentTime+ timeCurrentToU;
+                passengers.push_back(uPerson);
+                u->removePerson(uPerson);
+                currentVertex=u;
+
+                if(uPersonMaxArrival< maxArrivalTime)
+                    maxArrivalTime=uPersonMaxArrival;
+                break;
+            }
+
         }
+
+        if (q.empty())
+            return;
     }
 
 }

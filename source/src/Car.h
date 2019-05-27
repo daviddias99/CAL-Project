@@ -16,7 +16,7 @@ class Car {
 	uint maxSeats;
 	uint currentTakenSeats;
 	Person driver;
-	vector<Person*> passengers;
+	vector<Person> passengers;
 
 
 public:

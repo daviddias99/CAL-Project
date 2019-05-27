@@ -121,3 +121,16 @@ Time::Time() {
 
 
 }
+
+Time Time::operator+(double minutes) {
+
+        Time final;
+        unsigned h= this->hora;
+        unsigned m= this->minuto;
+        unsigned s= this->segundo;
+        h+=minutes/60;
+        m+= (int)minutes%60;
+        final=Time(h,m,s);
+        return final;
+
+}
