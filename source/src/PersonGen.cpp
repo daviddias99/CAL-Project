@@ -64,7 +64,7 @@ void genPeople(unsigned int amount, string cidade) {
 
         string newLine = "( " + to_string(i) + " , ";
 
-        int hour1 = randomBetween(6,22);
+        int hour1 = randomBetween(6,21);
         int minute1 = randomBetween(0,59);
         int delay = randomBetween(30,120);
 

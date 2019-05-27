@@ -371,17 +371,11 @@ void Graph::loadPeople() {
 
 void Graph::buildAchievableGraph(Graph &newGraph) {
 
-
-    for (size_t i = 0; i < this->vertexSet.size(); i++) {
-
-        if (vertexSet.at(i)->visited)
-            newGraph.addVertex(vertexSet.at(i)->info);
-    }
-
     for (size_t i = 0; i < this->vertexSet.size(); i++) {
 
         if (vertexSet.at(i)->visited) {
 
+            newGraph.addVertex(vertexSet.at(i)->info);
             for (size_t j = 0; j < vertexSet.at(i)->adj.size(); j++) {
 
                 newGraph.addEdge(vertexSet.at(i)->adj.at(j).orig->info, vertexSet.at(i)->adj.at(j).dest->info,
