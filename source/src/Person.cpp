@@ -8,7 +8,7 @@ unsigned int Person::getID() {
     return this->ID;
 }
 
-Person::Person(unsigned int ID, string name) {
+Person::Person(int ID, string name) {
 
     this->ID = ID;
     this->name = name;
@@ -44,3 +44,4 @@ Time Person::getMinDepartureTime(){
 Time Person::getMaxArrivalTime(){
     return this->maxArrivalTime;
 }
+

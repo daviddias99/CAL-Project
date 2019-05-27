@@ -13,7 +13,6 @@ class GraphViewer;
 class Car {
 
 	uint carID;
-	uint driverID;
 	uint maxSeats;
 	uint currentTakenSeats;
 	Person driver;
@@ -21,7 +20,7 @@ class Car {
 
 
 public:
-	Car(uint carID,uint driverID, uint maxSeats, Person &driver);
+	Car(uint carID, uint maxSeats, Person driver);
 
 	uint getCarID();
 	uint getDriverID();
@@ -30,3 +29,12 @@ public:
     bool isFull();
     void fillCarGreedy(Graph &graph, unsigned &maxDist);
 };
+
+/*
+struct candidateVertex{
+    Vertex* src;
+    Vertex* driverDest;
+    Vertex* candidateDest;
+    Vertex* candidate;
+} candidateVertex;
+ */
