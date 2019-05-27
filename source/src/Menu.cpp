@@ -108,9 +108,11 @@ void runMainMenu() {
                 cin >> tempChar;
                 cin.ignore(MAX_STREAM_SIZE, '\n');
                 gv->closeWindow();
+
                 break;
             case 7:
                 checkAlgorithm();
+
 
                 break;
             case 0:
