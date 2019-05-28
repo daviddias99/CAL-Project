@@ -29,9 +29,9 @@ CAL-Project has the following menu:
 0- Exit
 ```
 
-It is not possible to ask for 7 before 1,2,3 and 4. 
-It is not possible to ask for 5 before 1,2 and 3.
-It is not possible to ask for 8 before 1.
+* It is not possible to ask for 7 before 1,2,3 and 4. 
+* It is not possible to ask for 5 before 1,2 and 3.
+* It is not possible to ask for 8 before 1.
 
 ## Dependencies
 * [Graphviz - Graph Visualization Software](https://www.graphviz.org/)
