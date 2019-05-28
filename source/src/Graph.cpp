@@ -456,7 +456,7 @@ void Graph::processGraph(Graph &newGraph,Person driver) {
     }
     newGraph.addVertex(this->findVertex(NodeInfo(driver.getDestNodeID()))->getInfo(),i);
 
-
+/*
     for (int k = 0; k < newGraph.vertexSet.size(); ++k) {
         for (int i = 0; i < newGraph.vertexSet.size(); ++i) {
 
@@ -473,7 +473,7 @@ void Graph::processGraph(Graph &newGraph,Person driver) {
                 newGraph.addEdge(v1->getInfo(), v2->getInfo(), EdgeInfo(W[v1Original][v2Original]));
 
         }
-    }
+    } */
     newGraph.W = this->W;
     cout << "Done." << endl;
 }
