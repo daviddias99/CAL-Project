@@ -9,7 +9,7 @@ string cityName;
 GraphViewer *gv = NULL;
 Graph wholeMapGraph, graphAfterDFS, fwGraph;
 Person driver = Person(0, "Default");
-unsigned int driverDestNodeID = -1, driverSrcNodeID=1052802949;
+unsigned int driverDestNodeID = -1, driverSrcNodeID = 1052802949;
 const long long MAX_STREAM_SIZE = numeric_limits<streamsize>::max();
 vector<Person> passengersRes;
 bool generated = false;
@@ -76,24 +76,8 @@ void runMainMenu() {
 
                 exit = showDFSAfterDriver();
                 break;
-                /**
 
-            case 8:
 
-                initViewer(true);
-
-                cout << "Starting graph processing..." << endl;
-                graphAfterDFS.processGraph(fwGraph);
-                cout << "Done." << endl;
-                loadGraphForVis(gv, fwGraph);
-
-                cin >> tempChar;
-                cin.ignore(MAX_STREAM_SIZE, '\n');
-                gv->closeWindow();
-
-                break;
-
-                 **/
             case 7:
                 checkAlgorithm();
                 break;
@@ -131,19 +115,14 @@ void chooseDriver() {
         driverDestNodeID = endNodeID;
     }
 
-    cin.ignore(MAX_STREAM_SIZE, '\n');
-/*
-    driver = Person(100000000,driverName);
-    driver.setNodes(startNodeID,endNodeID);
-    driver.setTimes(Time(00,00,00), Time(23,59,00));
-    Vertex *startVertex = wholeMapGraph.findVertex(NodeInfo(startNodeID)); //add driver to graph
-    startVertex->getInfoRef().addPerson(driver);
-*/
+
     cout << "Start hour and minute: ";
     cin >> startHour >> startMinute;
 
     cout << "End hour and minute: ";
     cin >> endHour >> endMinute;
+
+    cin.ignore(MAX_STREAM_SIZE, '\n');
 
     driver = Person(-1, driverName);
     driver.setNodes(startNodeID, driverDestNodeID);
