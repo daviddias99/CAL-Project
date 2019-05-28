@@ -1,6 +1,6 @@
 # CAL-Project
 
-_forensic_ is a simple file information utility. It is being developed as a project from the course **Operating Systems** for the Integrated Master's Degree in Informatics Engineering and Computing, taught at the Faculty of Engineering of the University of Porto.
+Ridesharing using graphs.
 
 ## Authors
 
@@ -11,7 +11,7 @@ _forensic_ is a simple file information utility. It is being developed as a proj
 ## Compilation/Installation
 
 The project has its own make file and is ready to be open and compiled in CLion. 
-Be aware that some Linux distributions won't be able to compile the project using the Makefile, as they won't recognise the *#ifdef linux* instruction. You can either manually clean these instructions or run it on an IDE like Clion, that will recognise them.
+Be aware that some Linux distributions won't be able to compile the project using the Makefile, as they won't recognise the **#ifdef linux** instruction. You can either manually clean these instructions or run it on an IDE like Clion, that will recognise them.
 
 ## Usage
 
@@ -34,4 +34,4 @@ It is not possible to ask for 5 before 1,2 and 3.
 It is not possible to ask for 8 before 1.
 
 ## Dependencies
-* Graphviz - Graph Visualization Software
+* [Graphviz - Graph Visualization Software](https://www.graphviz.org/)
