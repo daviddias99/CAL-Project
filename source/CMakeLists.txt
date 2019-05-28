@@ -3,7 +3,7 @@ project(source)
 
 set(CMAKE_CXX_STANDARD 14)
 
-#link_libraries(ws2_32 wsock32)
+link_libraries(ws2_32 wsock32) #comment if in linux
 include_directories(src)
 include_directories(src/graph_viz)
 include_directories(resources/mapas)

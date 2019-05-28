@@ -253,7 +253,7 @@ int **Graph::getWMatrix() {
 
 /**************** Algorithm Functions  ***************/
 
-float edgeWeightFunc(unsigned vMax, double distance, unsigned int c) {
+float edgeWeightFunc(unsigned vMax, double distance, unsigned int trafficFactor) {
 
     return distance / vMax;
 }
@@ -439,11 +439,14 @@ void Graph::processGraph(Graph &newGraph,Person driver) {
     cout << "Starting FW..." << endl;
     floydWarshallShortestPath();
     cout << "Done." << endl;
+
+    // remove people with time-icompatibilities
     removeInvalidPeople(driver);
     int i;
     cout << "Building graph from FW..." << endl;
 
 
+    // add nodes with people to the new graph
     for (i = 0; i < this->vertexSet.size(); i++) {
 
         vertexSet.at(i)->queueIndex = i;
@@ -458,7 +461,9 @@ void Graph::processGraph(Graph &newGraph,Person driver) {
 
     }
 
+    // add the driver origin and destination node
     newGraph.addVertex(this->findVertex(NodeInfo(driver.getDestNodeID()))->getInfo(),i);
+    newGraph.addVertex(this->findVertex(NodeInfo(driver.getSourceNodeID()))->getInfo(),i+1);
 
 
     newGraph.W = this->W;

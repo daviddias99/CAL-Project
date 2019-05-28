@@ -61,22 +61,32 @@ public:
 	vector<NodeInfo> getfloydWarshallPath(const NodeInfo &origin, const NodeInfo &dest) const;
 	~Graph();
 
-	//algorithms
+    /**************** Algorithm Functions  ***************/
 
+    // Load a given city map into the graph
     void loadFromFile(string cidade);
+
+    // Load people from the chosen city into the graph
     void loadPeople();
     void loadPeople(int linesToIgnore, int lines);
+
+    // Builds the graph thats achievable from the chosen node. A dfs must always be executed before this function
     void buildAchievableGraph(Graph& newGraph);
+
+    // Applies FW Algorithm and removeInvalidPeople in order to build the simplified graph composed of only people and
+    // the drivers destination.
     void processGraph(Graph &newGraph,Person driver);
+
+    // Removes people with time-incompatibiliteis with the driver
     void removeInvalidPeople(Person driver);
+
+    // Uses the FW matrix to find the path of nodes that must be followed in order to take all the people of vector "persons"
     vector<NodeInfo> getPath(vector<Person> persons);
 
-    // debugging functions;
+    /**************** Debugging Functions  ***************/
     void printDests();
     void printMatrices();
 
-
-    double priorityFunction(Vertex* currentVertex, Vertex* subjectVertex, Vertex* destVertex);
 
 };
 

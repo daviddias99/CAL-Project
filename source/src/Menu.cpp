@@ -50,7 +50,6 @@ void runMainMenu() {
 
         showMainMenu();
         int option;
-        char tempChar;
         cin >> option;
         cin.ignore(MAX_STREAM_SIZE, '\n');
         switch (option) {
@@ -76,7 +75,6 @@ void runMainMenu() {
 
                 exit = showDFSAfterDriver();
                 break;
-
 
             case 7:
                 checkAlgorithm();
@@ -186,7 +184,6 @@ void checkAlgorithm() {
 
     Car car1=Car(0,4,driver);
 
-
     cout << "Starting fillCarGreedy" << endl;
     vector<Person> passengers = car1.fillCarGreedy(&fwGraph, 3000);
     cout << "Done." << endl;
@@ -198,7 +195,6 @@ void checkAlgorithm() {
         Person current = passengers.at(i);
         cout << "Passenger id: " << current.getID() << ", name: " << current.getName() << " minTime " << current.getMinDepartureTime() << " maxTime " << current.getMaxArrivalTime() << " pickupTime " << current.getPickupTime() << endl;
     }
-
 
     passengersRes = passengers;
 
@@ -213,6 +209,7 @@ void showWholeMap() {
     cout << "Loading whole graph for Vis..." << endl;
     loadGraphForVis(gv, wholeMapGraph);
 
+    // show path if the main algorithm as been run
     if (path.size() != 0) {
 
         for (int i = 0; i < path.size() - 1; i++) {
@@ -227,18 +224,17 @@ void showWholeMap() {
                 if (vertex1->adj.at(j).getDest()->getInfo() == vertex2->getInfo())
                     gv->setEdgeColor(vertex1->adj.at(j).getInfo().getID(), "RED");
             }
-
-
         }
     }
 
 
+    // show the passenger nodes if the main algorithm as been run
     for (int i = 0; i < passengersRes.size(); i++) {
 
         gv->setVertexColor(passengersRes.at(i).getSourceNodeID(), "GREEN");
     }
 
-
+    // show the driver source and dest nodes if they have been defined
     if (driver.getName() != "Default") {
 
         gv->setVertexColor(driver.getSourceNodeID(), "PINK");
@@ -248,6 +244,7 @@ void showWholeMap() {
     cout << "Done." << endl;
     cin >> tempChar;
     cin.ignore(MAX_STREAM_SIZE, '\n');
+
     gv->closeWindow();
 }
 
@@ -261,7 +258,7 @@ bool showDFSAfterDriver() {
     cout << "Done." << endl;
     cout << "Building achievable graph..." << endl;
 
-
+    // check fi the driver destination is reachable
     Vertex *destVertex = wholeMapGraph.findVertex(NodeInfo(driverDestNodeID));
 
     if (!destVertex->isVisited()) {
@@ -288,7 +285,6 @@ bool showDFSAfterDriver() {
 void checkComplexity(){
     ofstream complexityPerson;
     complexityPerson.open ("../resources/complexityPerson.csv");
-    //driverDestNodeID = genPeople(1000000, cityName);
     driverDestNodeID=1052802902;
     driver.setNodes(driverSrcNodeID,driverDestNodeID);
     driver.setTimes(Time(8,30),Time(12,30));

@@ -5,7 +5,6 @@
 #ifndef SOURCE_MENU_H
 #define SOURCE_MENU_H
 
-void chooseCity();
 
 #include <iostream>
 #include <string>
@@ -27,4 +26,5 @@ void showWholeMap();
 void checkAlgorithm();
 bool showDFSAfterDriver();
 void checkComplexity();
+
 #endif SOURCE_MENU_H

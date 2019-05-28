@@ -4,6 +4,14 @@
 #include <queue>
 #define VELOCITY 833
 
+struct CustomCompare
+{
+    bool operator()(Vertex* lhs, Vertex* rhs)
+    {
+        return priorityFunction(lhs) > priorityFunction(rhs);
+    }
+};
+
 struct candidateVertex {
     Vertex *current;
     Vertex *driverDest;
@@ -64,7 +72,6 @@ double getTime(Vertex* src, Vertex* dest, const double &velocity){
 
 double priorityFunction(Vertex *subjectVertex) {
 
-//    double currentToSubjectDistance = infoStruct.current->getInfo().realDistanceTo(subjectVertex->getInfo());
     double currentToSubjectTime = infoStruct.W[infoStruct.current->getQueueIndex()][subjectVertex->getQueueIndex()];
     double subjectToDriverDestDistance = subjectVertex->getInfo().realDistanceTo(infoStruct.driverDest->getInfo());
     double subjectToDriverDestTime = infoStruct.W[subjectVertex->getQueueIndex()][infoStruct.driverDest->getQueueIndex()];

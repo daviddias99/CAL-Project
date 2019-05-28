@@ -17,7 +17,6 @@ class Car {
 	uint maxSeats;
 	uint currentTakenSeats;
 	Person driver;
-	//vector<Person> passengers;
 
 
 public:
@@ -29,19 +28,12 @@ public:
 	uint getCurrentTakenSeats();
     bool isFull();
     vector<Person> fillCarGreedy(Graph *graph, unsigned maxDist);
-    //vector<Person> getPassengers();
 };
 
 double priorityFunction(Vertex *subjectVertex);
 
 
 
-struct CustomCompare
-{
-    bool operator()(Vertex* lhs, Vertex* rhs)
-    {
-        return priorityFunction(lhs) > priorityFunction(rhs);
-    }
-};
+
 
 #endif
