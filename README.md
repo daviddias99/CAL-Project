@@ -35,4 +35,4 @@ CAL-Project has the following menu:
 * It is not possible to ask for 8 before 1.
 
 ## Dependencies
-* [Graphviz - Graph Visualization Software](https://www.graphviz.org/)
+* [GraphViewer](https://paginas.fe.up.pt/~rossetti/rrwiki/doku.php?id=teaching:1011:cal:graphviewer)
