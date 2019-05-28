@@ -369,6 +369,46 @@ void Graph::loadPeople() {
 
 }
 
+void Graph::loadPeople(int linesToIgnore, int lines) {
+
+    ifstream peopleFile;
+    string currentLine, peopleFilePathStr;
+    ostringstream peopleFilePath;
+
+    peopleFilePath << "../resources/persons_" << cidade << ".txt";
+    peopleFilePathStr = peopleFilePath.str();
+    peopleFile.open(peopleFilePathStr);
+
+    for(int i= 0; i<linesToIgnore; i++){
+        getline(peopleFile, currentLine);
+    }
+
+    for(int i=0; i<lines-linesToIgnore; i++) {
+
+        char tempChar;
+        string name;
+        Time time1, time2;
+        unsigned int personID, hour, minute, nodeID1, nodeID2;
+
+        getline(peopleFile, currentLine);
+        stringstream line(currentLine);
+
+        line >> tempChar >> personID >> tempChar >> name >> tempChar >> hour >> tempChar >> minute >> tempChar;
+        time1 = Time(hour, minute);
+        line >> hour >> tempChar >> minute >> tempChar;
+        time2 = Time(hour, minute);
+        line >> nodeID1 >> tempChar >> nodeID2;
+
+        Person newPerson(personID, name);
+        newPerson.setTimes(time1, time2);
+        newPerson.setNodes(nodeID1, nodeID2);
+
+        Vertex *startVertex = this->findVertex(NodeInfo(nodeID1));
+        startVertex->getInfoRef().addPerson(newPerson);
+    }
+
+}
+
 void Graph::buildAchievableGraph(Graph &newGraph) {
 
     for (size_t i = 0; i < this->vertexSet.size(); i++) {
