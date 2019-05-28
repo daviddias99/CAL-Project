@@ -9,6 +9,11 @@ void chooseCity();
 
 #include <iostream>
 #include <string>
+#include <graph_viz/graphviewer.h>
+#include "Graph.h"
+#include "PersonGen.h"
+#include "VisLoader.h"
+#include "Car.h"
 
 using namespace std;
 
@@ -22,4 +27,4 @@ void showWholeMap();
 void checkAlgorithm();
 bool showDFSAfterDriver();
 
-#endif //SOURCE_MENU_H
+#endif SOURCE_MENU_H

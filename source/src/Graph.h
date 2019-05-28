@@ -65,8 +65,9 @@ public:
     void loadFromFile(string cidade);
     void loadPeople();
     void buildAchievableGraph(Graph& newGraph);
-    void processGraph(Graph& newGraph);
-    void removeInvalidPeople();
+    void processGraph(Graph &newGraph,Person driver);
+    void removeInvalidPeople(Person driver);
+    vector<NodeInfo> getPath(vector<Person> persons);
 
     // debugging functions;
     void printDests();

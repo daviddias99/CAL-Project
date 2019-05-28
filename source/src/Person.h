@@ -26,6 +26,7 @@ public:
     Person(int ID = -1, string name = "DEFAULT");
 
     void setTimes(Time minDep,Time maxArr);
+    void setPickupTime(Time time);
     void setNodes(unsigned int sourceID, unsigned int destID );
     unsigned int getID();
     unsigned int getDestNodeID();
@@ -33,6 +34,7 @@ public:
     string getName();
     Time getMinDepartureTime();
     Time getMaxArrivalTime();
+    Time getPickupTime();
     bool operator==(const Person & person);
 
 };

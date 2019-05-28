@@ -390,10 +390,14 @@ void Graph::buildAchievableGraph(Graph &newGraph) {
 
 }
 
-void Graph::processGraph(Graph &newGraph) {
+void Graph::processGraph(Graph &newGraph,Person driver) {
 
+    cout << "Starting FW..." << endl;
     floydWarshallShortestPath();
+    cout << "Done." << endl;
+    removeInvalidPeople(driver);
 
+    cout << "Building graph from FW..." << endl;
     for (int i = 0; i < this->vertexSet.size(); i++) {
 
         vertexSet.at(i)->queueIndex = i;
@@ -431,9 +435,10 @@ void Graph::processGraph(Graph &newGraph) {
 
         }
     }
+    cout << "Done." << endl;
 }
 
-void Graph::removeInvalidPeople() {
+void Graph::removeInvalidPeople(Person driver) {
 
     for (int i = 0; i < this->vertexSet.size(); i++) {
 
@@ -444,25 +449,24 @@ void Graph::removeInvalidPeople() {
 
             Person person = people.at(j);
 
+            Time driverMinDepartureTime = driver.getMinDepartureTime();
+            Time personMaxArrivalTime = driver.getMaxArrivalTime();
+
+
+            if(personMaxArrivalTime < driverMinDepartureTime)
+                info->removePerson(person.getID());
+
+            /*
             if (findVertex(NodeInfo(person.getDestNodeID())) == NULL) {
                 info->removePerson(person.getID());
-            }
+            } */
         }
     }
 
 }
 
-double Graph::priorityFunction(Vertex *currentVertex, Vertex *subjectVertex, Vertex *driverDestVertex) {
 
-    double currentToSubjectDistance = currentVertex->getInfo().realDistanceTo(subjectVertex->getInfo());
-    double subjectToDriverDestDistance = subjectVertex->getInfo().realDistanceTo(driverDestVertex->getInfo());
-    uint subjectDestID = subjectVertex->getInfo().getPeople().at(0).getDestNodeID();
-    Vertex *subjectDestVertex = findVertex(NodeInfo(subjectDestID));
-    double subjectDestToDriverDestDistance = subjectDestVertex->getInfo().realDistanceTo(driverDestVertex->getInfo());
 
-    return 2;
-//    return currentToSubjectDistance + sub
-}
 
 /**************** Debugging Functions  ***************/
 
@@ -499,5 +503,30 @@ void Graph::printDests() {
 
     }
 
+}
+
+vector<NodeInfo> Graph::getPath(vector<Person> persons) {
+
+    vector<NodeInfo> result;
+
+    for(int i = 0; i < persons.size()-1;i++){
+
+        NodeInfo sourceID = persons.at(i).getSourceNodeID();
+        NodeInfo destID = persons.at(i+1).getSourceNodeID();
+
+        vector<NodeInfo> temp = getfloydWarshallPath(sourceID,destID);
+
+        result.insert( result.end(), temp.begin(), temp.end() );
+
+    }
+
+    NodeInfo sourceID = persons.at(persons.size()-1).getSourceNodeID();
+    NodeInfo destID = persons.at(0).getDestNodeID();
+
+    vector<NodeInfo> temp = getfloydWarshallPath(sourceID,destID);
+
+    result.insert( result.end(), temp.begin(), temp.end() );
+
+    return result;
 }
 

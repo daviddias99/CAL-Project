@@ -2,20 +2,18 @@
 // Created by david on 27-05-2019.
 //
 
-#include <graph_viz/graphviewer.h>
 #include "Menu.h"
-#include "Graph.h"
-#include "PersonGen.h"
-#include "VisLoader.h"
-#include "Car.h"
+
 
 string cityName;
 GraphViewer *gv = NULL;
 Graph wholeMapGraph, graphAfterDFS, fwGraph;
 Person driver = Person(0, "Default");
-unsigned int driverDestNodeID;
+unsigned int driverDestNodeID = -1;
 const long long MAX_STREAM_SIZE = numeric_limits<streamsize>::max();
+vector<Person> passengersRes;
 bool generated = false;
+vector<NodeInfo> path;
 
 void showMainMenu() {
 
@@ -100,7 +98,7 @@ void runMainMenu() {
                  **/
             case 7:
                 checkAlgorithm();
-
+                break;
 
 
             case 0:
@@ -185,19 +183,44 @@ void generatePeople() {
     generated = true;
 }
 
+
+
 void checkAlgorithm() {
 
+    cout << "Starting DFS on driver node" << endl;
     wholeMapGraph.dfs(NodeInfo(driver.getSourceNodeID()));
+    cout << "Done." << endl;
+
+    Vertex *destVertex = wholeMapGraph.findVertex(NodeInfo(driverDestNodeID));
+
+    if (!destVertex->isVisited()) {
+
+        cout << "The driver's destination isn't reachable from his starting position. Exiting..." << endl;
+        return;
+    }
+
+    cout << "Building achievable from driver graph..." << endl;
     wholeMapGraph.buildAchievableGraph(graphAfterDFS);
+    cout << "Done." << endl;
     Graph graph3;
-    graphAfterDFS.processGraph(graph3);
+    cout << "Processing graph..." << endl;
+    graphAfterDFS.processGraph(graph3,driver);
+    cout << "Done." << endl;
+
     Car car1=Car(0,4,driver);
 
-    vector<Person> passengers=car1.fillCarGreedy(&graph3, 10000);
+    cout << "Starting fillCarGreedy" << endl;
+    vector<Person> passengers=car1.fillCarGreedy(&graph3, 5000);
+    cout << "Done." << endl;
+
+
     cout<< "Passengers:"<<endl;
     for(auto p: passengers)
-        cout<< "Passenger id: " <<p.getID()<<", name: "<< p.getName()<<endl;
+        cout<< "Passenger id: " <<p.getID()<<", name: "<< p.getName() << " minTime " << p.getMinDepartureTime() << " maxTime " << p.getMaxArrivalTime() << " pickupTime " << p.getPickupTime() << endl;
 
+    passengersRes = passengers;
+
+    path = graphAfterDFS.getPath(passengers);
 
 }
 
@@ -207,6 +230,25 @@ void showWholeMap() {
     initViewer();
     cout << "Loading whole graph for Vis..." << endl;
     loadGraphForVis(gv, wholeMapGraph);
+
+
+    for(int i = 0; i < path.size();i++){
+
+        gv->setVertexColor(wholeMapGraph.findVertex(path.at(i))->getInfo().getID(),"DARK_GRAY");
+    }
+
+    for(int i = 0; i < passengersRes.size();i++){
+
+        gv->setVertexColor(passengersRes.at(i).getSourceNodeID(),"GREEN");
+    }
+
+
+    if(driver.getName() != "Default"){
+
+        gv->setVertexColor(driver.getSourceNodeID(), "PINK");
+        gv->setVertexColor(driverDestNodeID, "MAGENTA");
+    }
+
     cout << "Done." << endl;
     cin >> tempChar;
     cin.ignore(MAX_STREAM_SIZE, '\n');

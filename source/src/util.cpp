@@ -130,7 +130,16 @@ Time Time::operator+(double minutes) {
         unsigned s= this->segundo;
         h+=minutes/60;
         m+= (int)minutes%60;
+        h += m/60;
+        m = m%60;
         final=Time(h,m,s);
         return final;
 
+}
+
+ostream& operator<<(ostream& os, const Time& d){
+
+    os << d.hora << ":" << d.minuto;
+
+    return os;
 }

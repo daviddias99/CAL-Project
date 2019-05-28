@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CAR_H
+#define CAR_H
 
 class Edge;
 class Graph;
@@ -31,11 +32,16 @@ public:
     //vector<Person> getPassengers();
 };
 
-/*
-struct candidateVertex{
-    Vertex* src;
-    Vertex* driverDest;
-    Vertex* candidateDest;
-    Vertex* candidate;
-} candidateVertex;
- */
+double priorityFunction(Vertex *subjectVertex);
+
+
+
+struct CustomCompare
+{
+    bool operator()(Vertex* lhs, Vertex* rhs)
+    {
+        return priorityFunction(lhs) > priorityFunction(rhs);
+    }
+};
+
+#endif

@@ -54,3 +54,13 @@ bool Person::operator==(const Person &person) {
 
 }
 
+void Person::setPickupTime(Time time) {
+
+    this->pickUpTime = time;
+
+}
+
+Time Person::getPickupTime() {
+    return this->pickUpTime;
+}
+
