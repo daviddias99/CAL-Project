@@ -38,6 +38,6 @@ CAL-Project has the following menu:
 * If person-file for the city already exists, 2 may be skipped. If so, when choosing the driver, the user will be promptd to choose the destination node which must be the same as the destination of the existing person-file.
 * If the user executes 2, when executing 4 the program will automatically use the randomly chosen destination of the people as the destination of the driver.
 * To avoid unintended behaviour, 8 should not be run after 4,6 or 7, and 7 after 6. Any new runs of the algorithms should also be done by restarting the program.
-
+NOTE: The algorithms were tested mainly on the map of Fafe
 ## Dependencies
 * [GraphViewer](https://paginas.fe.up.pt/~rossetti/rrwiki/doku.php?id=teaching:1011:cal:graphviewer)
