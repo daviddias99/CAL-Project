@@ -9,7 +9,7 @@ string cityName;
 GraphViewer *gv = NULL;
 Graph wholeMapGraph, graphAfterDFS, fwGraph;
 Person driver = Person(0, "Default");
-unsigned int driverDestNodeID = -1;
+unsigned int driverDestNodeID = -1, driverSrcNodeID=1052802949;
 const long long MAX_STREAM_SIZE = numeric_limits<streamsize>::max();
 vector<Person> passengersRes;
 bool generated = false;
@@ -33,6 +33,7 @@ void showMainMenu() {
     cout << " 5- Show whole map" << endl;
     cout << " 6- Show graph after driver DFS" << endl;
     cout << " 7- Run Algorithm " << endl;
+    cout << " 8- Check complexity " << endl;
     cout << " 0- Exit" << endl;
 
     cout << endl;
@@ -96,7 +97,9 @@ void runMainMenu() {
             case 7:
                 checkAlgorithm();
                 break;
-
+            case 8:
+                checkComplexity();
+                break;
 
             case 0:
                 exit = true;
@@ -202,7 +205,8 @@ void checkAlgorithm() {
     graphAfterDFS.processGraph(fwGraph, driver);
     cout << "Done." << endl;
 
-    Car car1 = Car(0, 13, driver);
+    Car car1=Car(0,4,driver);
+
 
     cout << "Starting fillCarGreedy" << endl;
     vector<Person> passengers = car1.fillCarGreedy(&fwGraph, 3000);
@@ -300,4 +304,22 @@ bool showDFSAfterDriver() {
     gv->closeWindow();
 
     return false;
+}
+
+void checkComplexity(){
+    ofstream complexityPerson;
+    complexityPerson.open ("../resources/complexityPerson.csv");
+    //driverDestNodeID = genPeople(1000000, cityName);
+    driverDestNodeID=1052802902;
+    driver.setNodes(driverSrcNodeID,driverDestNodeID);
+    driver.setTimes(Time(8,30),Time(12,30));
+    Vertex *startVertex = wholeMapGraph.findVertex(NodeInfo(driverSrcNodeID)); //add driver to graph
+    startVertex->getInfoRef().addPerson(driver);
+    for(int i= 0; i<18; i++){
+        wholeMapGraph.loadPeople(i*10000, (i+1)*10000);
+        clock_t tStart = clock();
+        checkAlgorithm();
+        complexityPerson<<i<<";"<<(double)(clock() - tStart)/CLOCKS_PER_SEC<<endl;
+    }
+    complexityPerson.close();
 }

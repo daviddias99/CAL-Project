@@ -65,6 +65,7 @@ public:
 
     void loadFromFile(string cidade);
     void loadPeople();
+    void loadPeople(int linesToIgnore, int lines);
     void buildAchievableGraph(Graph& newGraph);
     void processGraph(Graph &newGraph,Person driver);
     void removeInvalidPeople(Person driver);
