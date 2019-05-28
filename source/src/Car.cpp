@@ -8,6 +8,7 @@ struct candidateVertex{
     Vertex* current;
     Vertex* driverDest;
     Vertex* candidate;
+    int ** W;
 } candidateVertex_t;
 
 struct candidateVertex infoStruct;
@@ -26,11 +27,7 @@ uint Car::getCarID()
 	return this->carID;
 }
 
-/*
-vector<Person> Car::getPassengers(){
-    return this->passengers;
-}
-*/
+
 uint Car::getDriverID()
 {
 	return this->driver.getID();
@@ -66,30 +63,36 @@ double getDist(Vertex *src, Vertex *dest){
 }
 
 double getTime(Vertex* src, Vertex* dest, const double &velocity){
-    for(auto e: src->getAdj()){
+    /*for(auto e: src->getAdj()){
         if(e.getDest()->getInfo().getID()==dest->getInfo().getID()){
 
             return e.getInfo().getTempo();
         }
 
-    }
-    return INF;
+    }*/
+
+
+    return infoStruct.W[src->getQueueIndex()][dest->getQueueIndex()];
 }
 
 
 double priorityFunction(Vertex *subjectVertex) {
 
-    double currentToSubjectDistance = infoStruct.current->getInfo().realDistanceTo(subjectVertex->getInfo());
+//    double currentToSubjectDistance = infoStruct.current->getInfo().realDistanceTo(subjectVertex->getInfo());
+    double currentToSubjectTime = infoStruct.W[infoStruct.current->getQueueIndex()][subjectVertex->getQueueIndex()];
     double subjectToDriverDestDistance = subjectVertex->getInfo().realDistanceTo(infoStruct.driverDest->getInfo());
+    double subjectToDriverDestTime = infoStruct.W[subjectVertex->getQueueIndex()][infoStruct.driverDest->getQueueIndex()];
 
 
-    return currentToSubjectDistance +subjectToDriverDestDistance ;
+    return currentToSubjectTime*10 +subjectToDriverDestDistance/100 + subjectToDriverDestTime*10 ;
 }
 
 
 
 vector<Person> Car::fillCarGreedy(Graph *graph, unsigned maxDist){
+
     vector<Person> passengers;
+    driver.setPickupTime(driver.getMinDepartureTime());
     passengers.push_back(driver);
     currentTakenSeats=1;
     priority_queue<Vertex*,std::vector<Vertex*>,CustomCompare> q;
@@ -107,9 +110,10 @@ vector<Person> Car::fillCarGreedy(Graph *graph, unsigned maxDist){
     double timeUtoDest;
 
     infoStruct.driverDest = dest;
-
+    infoStruct.W = graph->getWMatrix();
 
     while (!isFull()){
+
         makeEmpty(q);
 
         infoStruct.current = currentVertex;
@@ -121,6 +125,7 @@ vector<Person> Car::fillCarGreedy(Graph *graph, unsigned maxDist){
         }
 
         while(!q.empty()){
+
             u= q.top();
             uPerson= u->getInfo().getPeople()[0];
 
@@ -128,10 +133,9 @@ vector<Person> Car::fillCarGreedy(Graph *graph, unsigned maxDist){
             uPersonMinDeparture=uPerson.getMinDepartureTime();
             q.pop();
 
-            if(currentTime < uPersonMinDeparture )
-                continue;
+            /*
             if(find(passengers.begin(), passengers.end(), uPerson) != passengers.end()) //check if person is in car
-                continue;
+                continue; */
             timeCurrentToU=getTime(currentVertex, u, VELOCITY);
             if(timeCurrentToU==INF)
                 continue;
@@ -140,12 +144,18 @@ vector<Person> Car::fillCarGreedy(Graph *graph, unsigned maxDist){
                 continue;
             supposeArrival= (currentTime + (timeCurrentToU+timeUtoDest));
 
+            if(supposeArrival.passedToNext)
+                continue;
+
+            if( currentTime+ timeCurrentToU < uPersonMinDeparture )
+                continue;
+
             if (supposeArrival< maxArrivalTime && supposeArrival<uPersonMaxArrival){
 
                 currentTime= currentTime+ timeCurrentToU;
                 uPerson.setPickupTime(currentTime);
                 passengers.push_back(uPerson);
-
+                u->removePerson(uPerson);
                 currentTakenSeats+=1;
                 u->removePerson(uPerson);
                 currentVertex=u;
@@ -157,11 +167,15 @@ vector<Person> Car::fillCarGreedy(Graph *graph, unsigned maxDist){
 
         }
 
-        if (q.empty())
+        if (q.empty()){
+
+            cout << "ArrivalTime: " << currentTime + timeUtoDest<< endl;
             return passengers;
+        }
+
     }
 
-    cout << "ArrivalTime: " << currentTime << endl;
+    cout << "ArrivalTime: " << currentTime + timeUtoDest<< endl;
     return passengers;
 }
 

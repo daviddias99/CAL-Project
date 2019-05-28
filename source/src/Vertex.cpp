@@ -1,7 +1,7 @@
 #include "Vertex.h"
 
 
-Vertex::Vertex(NodeInfo in) : info(in), visited(false) {}
+Vertex::Vertex(NodeInfo in, int queueIndex) : info(in), visited(false),queueIndex(queueIndex) {}
 
 /*
 * Auxiliary function to add an outgoing edge to a vertex (this),
@@ -51,4 +51,8 @@ bool Vertex::fillGreedyComparable(Vertex &vertex) const {
 
 bool Vertex::isVisited() const {
     return visited;
+}
+
+int Vertex::getQueueIndex() {
+    return queueIndex;
 }

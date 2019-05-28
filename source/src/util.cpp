@@ -14,6 +14,7 @@ Time::Time(uint hora, uint minuto, uint segundo) : hora(hora), minuto(minuto), s
     if (segundo > 59)
         throw TimeInvalido("Segundo invalido.");
 
+    this->passedToNext = false;
 }
 
 Time::Time(string time) {
@@ -118,6 +119,7 @@ Time::Time() {
     this->hora = tempAtualStruct->tm_hour;
     this->minuto = tempAtualStruct->tm_min;
     this->segundo = tempAtualStruct->tm_sec;
+    this->passedToNext = false;
 
 
 }
@@ -132,6 +134,14 @@ Time Time::operator+(double minutes) {
         m+= (int)minutes%60;
         h += m/60;
         m = m%60;
+
+        if(h >= 24){
+
+            this->passedToNext = true;
+            return Time(23,59);
+        }
+
+
         final=Time(h,m,s);
         return final;
 

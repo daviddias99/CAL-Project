@@ -36,7 +36,11 @@ protected:
     */
     unsigned int hora;
 
+
+
 public:
+
+    bool passedToNext;
 
     /**
     * @brief Construtor default da classe Time, constroi o objeto  com o tempo(hora, minuto

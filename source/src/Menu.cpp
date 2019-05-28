@@ -77,9 +77,6 @@ void runMainMenu() {
                 break;
                 /**
 
-            case 7:
-                checkAlgorithm();
-                break;
             case 8:
 
                 initViewer(true);
@@ -112,7 +109,7 @@ void runMainMenu() {
 
 void chooseDriver() {
 
-    unsigned int startNodeID, endNodeID, startHour,startMinute,endHour,endMinute;
+    unsigned int startNodeID, endNodeID, startHour, startMinute, endHour, endMinute;
     string driverName;
 
     cout << "-- Driver Selection --" << endl << endl;
@@ -147,7 +144,7 @@ void chooseDriver() {
 
     driver = Person(-1, driverName);
     driver.setNodes(startNodeID, driverDestNodeID);
-    driver.setTimes(Time(startHour,startMinute),Time(endHour,endMinute));
+    driver.setTimes(Time(startHour, startMinute), Time(endHour, endMinute));
     Vertex *startVertex = wholeMapGraph.findVertex(NodeInfo(startNodeID)); //add driver to graph
     startVertex->getInfoRef().addPerson(driver);
 
@@ -184,7 +181,6 @@ void generatePeople() {
 }
 
 
-
 void checkAlgorithm() {
 
     cout << "Starting DFS on driver node" << endl;
@@ -202,21 +198,24 @@ void checkAlgorithm() {
     cout << "Building achievable from driver graph..." << endl;
     wholeMapGraph.buildAchievableGraph(graphAfterDFS);
     cout << "Done." << endl;
-    Graph graph3;
     cout << "Processing graph..." << endl;
-    graphAfterDFS.processGraph(graph3,driver);
+    graphAfterDFS.processGraph(fwGraph, driver);
     cout << "Done." << endl;
 
-    Car car1=Car(0,4,driver);
+    Car car1 = Car(0, 13, driver);
 
     cout << "Starting fillCarGreedy" << endl;
-    vector<Person> passengers=car1.fillCarGreedy(&graph3, 5000);
+    vector<Person> passengers = car1.fillCarGreedy(&fwGraph, 3000);
     cout << "Done." << endl;
 
 
-    cout<< "Passengers:"<<endl;
-    for(auto p: passengers)
-        cout<< "Passenger id: " <<p.getID()<<", name: "<< p.getName() << " minTime " << p.getMinDepartureTime() << " maxTime " << p.getMaxArrivalTime() << " pickupTime " << p.getPickupTime() << endl;
+    cout << "Passengers:" << endl;
+    for (int i = 0; i < passengers.size();i++){
+
+        Person current = passengers.at(i);
+        cout << "Passenger id: " << current.getID() << ", name: " << current.getName() << " minTime " << current.getMinDepartureTime() << " maxTime " << current.getMaxArrivalTime() << " pickupTime " << current.getPickupTime() << endl;
+    }
+
 
     passengersRes = passengers;
 
@@ -231,19 +230,33 @@ void showWholeMap() {
     cout << "Loading whole graph for Vis..." << endl;
     loadGraphForVis(gv, wholeMapGraph);
 
+    if (path.size() != 0) {
 
-    for(int i = 0; i < path.size();i++){
+        for (int i = 0; i < path.size() - 1; i++) {
 
-        gv->setVertexColor(wholeMapGraph.findVertex(path.at(i))->getInfo().getID(),"DARK_GRAY");
+            Vertex *vertex1 = wholeMapGraph.findVertex(path.at(i));
+            Vertex *vertex2 = wholeMapGraph.findVertex(path.at(i + 1));
+
+            gv->setVertexColor(vertex1->getInfo().getID(), "DARK_GRAY");
+
+            for (int j = 0; j < vertex1->adj.size(); j++) {
+
+                if (vertex1->adj.at(j).getDest()->getInfo() == vertex2->getInfo())
+                    gv->setEdgeColor(vertex1->adj.at(j).getInfo().getID(), "RED");
+            }
+
+
+        }
     }
 
-    for(int i = 0; i < passengersRes.size();i++){
 
-        gv->setVertexColor(passengersRes.at(i).getSourceNodeID(),"GREEN");
+    for (int i = 0; i < passengersRes.size(); i++) {
+
+        gv->setVertexColor(passengersRes.at(i).getSourceNodeID(), "GREEN");
     }
 
 
-    if(driver.getName() != "Default"){
+    if (driver.getName() != "Default") {
 
         gv->setVertexColor(driver.getSourceNodeID(), "PINK");
         gv->setVertexColor(driverDestNodeID, "MAGENTA");

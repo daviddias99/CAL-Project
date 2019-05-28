@@ -4,7 +4,7 @@
 
 #include "Person.h"
 
-unsigned int Person::getID() {
+int Person::getID() {
     return this->ID;
 }
 
