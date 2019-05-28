@@ -54,23 +54,8 @@ void makeEmpty(priority_queue<Vertex*,std::vector<Vertex*>,CustomCompare> &q){
     }
 }
 
-/*
-double getDist(Vertex *src, Vertex *dest){
-    for(auto e: src->getAdj()){
-        if(e.getDest()->getInfo().getID()==dest->getInfo().getID())
-            return e.getInfo().getDistance();
-    }
-    return INF;
-} */
-
 double getTime(Vertex* src, Vertex* dest, const double &velocity){
-    /*for(auto e: src->getAdj()){
-        if(e.getDest()->getInfo().getID()==dest->getInfo().getID()){
 
-            return e.getInfo().getTempo();
-        }
-
-    }*/
 
 
     return infoStruct.W[src->getQueueIndex()][dest->getQueueIndex()];

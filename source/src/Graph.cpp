@@ -247,6 +247,10 @@ vector<NodeInfo> Graph::getfloydWarshallPath(const NodeInfo &orig, const NodeInf
     return res;
 }
 
+int **Graph::getWMatrix() {
+    return W;
+}
+
 /**************** Algorithm Functions  ***************/
 
 float edgeWeightFunc(unsigned vMax, double distance, unsigned int c) {
@@ -400,7 +404,6 @@ void Graph::processGraph(Graph &newGraph,Person driver) {
     cout << "Building graph from FW..." << endl;
 
 
-
     for (i = 0; i < this->vertexSet.size(); i++) {
 
         vertexSet.at(i)->queueIndex = i;
@@ -414,26 +417,10 @@ void Graph::processGraph(Graph &newGraph,Person driver) {
         }
 
     }
+
     newGraph.addVertex(this->findVertex(NodeInfo(driver.getDestNodeID()))->getInfo(),i);
 
-/*
-    for (int k = 0; k < newGraph.vertexSet.size(); ++k) {
-        for (int i = 0; i < newGraph.vertexSet.size(); ++i) {
 
-            if (k == i)
-                continue;
-
-            Vertex *v1 = newGraph.vertexSet.at(k);
-            Vertex *v2 = newGraph.vertexSet.at(i);
-            int v1Original = this->findVertex(v1->getInfo())->queueIndex;
-            int v2Original = this->findVertex(v2->getInfo())->queueIndex;
-
-
-            if (W[v1Original][v2Original] != INF)
-                newGraph.addEdge(v1->getInfo(), v2->getInfo(), EdgeInfo(W[v1Original][v2Original]));
-
-        }
-    } */
     newGraph.W = this->W;
     cout << "Done." << endl;
 }
@@ -456,15 +443,36 @@ void Graph::removeInvalidPeople(Person driver) {
             if(personMaxArrivalTime < driverMinDepartureTime)
                 info->removePerson(person.getID());
 
-            /*
-            if (findVertex(NodeInfo(person.getDestNodeID())) == NULL) {
-                info->removePerson(person.getID());
-            } */
         }
     }
 
 }
 
+
+vector<NodeInfo> Graph::getPath(vector<Person> persons) {
+
+    vector<NodeInfo> result;
+
+    for(int i = 0; i < persons.size()-1;i++){
+
+        NodeInfo sourceID = persons.at(i).getSourceNodeID();
+        NodeInfo destID = persons.at(i+1).getSourceNodeID();
+
+        vector<NodeInfo> temp = getfloydWarshallPath(sourceID,destID);
+
+        result.insert( result.end(), temp.begin(), temp.end() );
+
+    }
+
+    NodeInfo sourceID = persons.at(persons.size()-1).getSourceNodeID();
+    NodeInfo destID = persons.at(0).getDestNodeID();
+
+    vector<NodeInfo> temp = getfloydWarshallPath(sourceID,destID);
+
+    result.insert( result.end(), temp.begin(), temp.end() );
+
+    return result;
+}
 
 
 
@@ -505,32 +513,5 @@ void Graph::printDests() {
 
 }
 
-vector<NodeInfo> Graph::getPath(vector<Person> persons) {
 
-    vector<NodeInfo> result;
-
-    for(int i = 0; i < persons.size()-1;i++){
-
-        NodeInfo sourceID = persons.at(i).getSourceNodeID();
-        NodeInfo destID = persons.at(i+1).getSourceNodeID();
-
-        vector<NodeInfo> temp = getfloydWarshallPath(sourceID,destID);
-
-        result.insert( result.end(), temp.begin(), temp.end() );
-
-    }
-
-    NodeInfo sourceID = persons.at(persons.size()-1).getSourceNodeID();
-    NodeInfo destID = persons.at(0).getDestNodeID();
-
-    vector<NodeInfo> temp = getfloydWarshallPath(sourceID,destID);
-
-    result.insert( result.end(), temp.begin(), temp.end() );
-
-    return result;
-}
-
-int **Graph::getWMatrix() {
-    return W;
-}
 
