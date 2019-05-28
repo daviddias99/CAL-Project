@@ -11,6 +11,7 @@ Ridesharing using graphs.
 ## Compilation/Installation
 
 The project has its own make file and is ready to be open and compiled in CLion. 
+
 Be aware that some Linux distributions won't be able to compile the project using the Makefile, as they won't recognise the **#ifdef linux** instruction. You can either manually clean these instructions or run it on an IDE like Clion, that will recognise them.
 
 ## Usage
