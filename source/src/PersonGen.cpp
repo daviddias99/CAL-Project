@@ -68,7 +68,7 @@ unsigned int genPeople(unsigned int amount, string cidade) {
 
         int hour1 = randomBetween(6,21);
         int minute1 = randomBetween(0,59);
-        int delay = randomBetween(30,120);
+        int delay = randomBetween(60,120);
 
         int hour2 = hour1 +(minute1 + delay) / 60;
         int minute2 = (minute1 + delay) % 60;

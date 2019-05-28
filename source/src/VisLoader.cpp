@@ -153,7 +153,7 @@ void loadGraphForVis(GraphViewer* gv, Graph& graph) {
 //            if(vSet.at(i)->adj.at(j).info.getID() % 2 == 0)
 //                continue;
 
-            gv->addEdge(id, vSet.at(i)->adj.at(j).orig->info.getID(), vSet.at(i)->adj.at(j).dest->info.getID(),EdgeType::DIRECTED);
+            gv->addEdge(vSet.at(i)->adj.at(j).getInfo().getID(), vSet.at(i)->adj.at(j).orig->info.getID(), vSet.at(i)->adj.at(j).dest->info.getID(),EdgeType::DIRECTED);
 
             int weight = (int) vSet.at(i)->adj.at(j).getWeight();
             gv->setEdgeWeight(id, weight);

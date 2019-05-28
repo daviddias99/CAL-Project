@@ -24,15 +24,17 @@ class Vertex {
 
 
 public:
-	Vertex(NodeInfo in);
+	Vertex(NodeInfo in, int queueIndex = 0);
 	bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
 	NodeInfo getInfo() const;
 	NodeInfo& getInfoRef();
+	int getQueueIndex();
 	double getDist() const;
 	Vertex *getPath() const;
 	friend class Graph;
 	friend class MutablePriorityQueue<Vertex>;
 	friend void loadGraphForVis(GraphViewer* gv, Graph& graph);
+	friend void showWholeMap();
 	bool isVisited() const;
 	vector<Edge> getAdj() const;
 	void removePerson(Person person);

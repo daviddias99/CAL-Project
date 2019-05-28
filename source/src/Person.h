@@ -28,7 +28,7 @@ public:
     void setTimes(Time minDep,Time maxArr);
     void setPickupTime(Time time);
     void setNodes(unsigned int sourceID, unsigned int destID );
-    unsigned int getID();
+    int getID();
     unsigned int getDestNodeID();
     unsigned int getSourceNodeID();
     string getName();

@@ -37,10 +37,10 @@ int Graph::findVertexIdx(const NodeInfo &in) const {
 *  Returns true if successful, and false if a vertex with that content already exists.
 */
 
-bool Graph::addVertex(const NodeInfo &in) {
+bool Graph::addVertex(const NodeInfo &in, int queueIndex) {
     if (findVertex(in) != nullptr)
         return false;
-    vertexSet.push_back(new Vertex(in));
+    vertexSet.push_back(new Vertex(in,queueIndex));
     return true;
 }
 
@@ -436,9 +436,12 @@ void Graph::processGraph(Graph &newGraph,Person driver) {
     floydWarshallShortestPath();
     cout << "Done." << endl;
     removeInvalidPeople(driver);
-
+    int i;
     cout << "Building graph from FW..." << endl;
-    for (int i = 0; i < this->vertexSet.size(); i++) {
+
+
+
+    for (i = 0; i < this->vertexSet.size(); i++) {
 
         vertexSet.at(i)->queueIndex = i;
         NodeInfo info = vertexSet.at(i)->getInfo();
@@ -446,17 +449,13 @@ void Graph::processGraph(Graph &newGraph,Person driver) {
 
         if (!people.empty()) {
 
-            newGraph.addVertex(info);
+            newGraph.addVertex(info,i);
 
-            for (int j = 0; j < people.size(); j++) {
-
-
-                newGraph.addVertex(this->findVertex(NodeInfo(people.at(j).getDestNodeID()))->getInfo());
-
-            }
         }
 
     }
+    newGraph.addVertex(this->findVertex(NodeInfo(driver.getDestNodeID()))->getInfo(),i);
+
 
     for (int k = 0; k < newGraph.vertexSet.size(); ++k) {
         for (int i = 0; i < newGraph.vertexSet.size(); ++i) {
@@ -475,6 +474,7 @@ void Graph::processGraph(Graph &newGraph,Person driver) {
 
         }
     }
+    newGraph.W = this->W;
     cout << "Done." << endl;
 }
 
@@ -568,5 +568,9 @@ vector<NodeInfo> Graph::getPath(vector<Person> persons) {
     result.insert( result.end(), temp.begin(), temp.end() );
 
     return result;
+}
+
+int **Graph::getWMatrix() {
+    return W;
 }
 

@@ -43,7 +43,7 @@ class Graph {
 	void dfsVisit(Vertex *v, vector<NodeInfo> & res) const;
 public:
 	Vertex *findVertex(const NodeInfo &in) const;
-	bool addVertex(const NodeInfo &in);
+	bool addVertex(const NodeInfo &in, int queueIndex = 0);
 	bool addEdge(const NodeInfo &sourc, const NodeInfo &dest, EdgeInfo w);
 	int getNumVertex() const;
 	vector<Vertex *> getVertexSet() const;
@@ -54,6 +54,7 @@ public:
 	void unweightedShortestPath(const NodeInfo &s);
 	void bellmanFordShortestPath(const NodeInfo &s);
 	vector<NodeInfo> getPath(const NodeInfo &origin, const NodeInfo &dest) const;
+	int ** getWMatrix();
 
 	//all pairs
 	void floydWarshallShortestPath();
