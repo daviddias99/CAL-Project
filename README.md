@@ -40,4 +40,4 @@ CAL-Project has the following menu:
 * To avoid unintended behaviour, 8 should not be run after 4,6 or 7, and 7 after 6. Any new runs of the algorithms should also be done by restarting the program.
 
 ## Dependencies
-* [Graphviz - Graph Visualization Software](https://www.graphviz.org/)
+* [GraphViewer](https://paginas.fe.up.pt/~rossetti/rrwiki/doku.php?id=teaching:1011:cal:graphviewer)
