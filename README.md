@@ -1,6 +1,7 @@
 # Ridesharing using Graphs
 
-This is a group project developed for the course of CAL (analysis and construction of algorithms) at FEUP. It uses a greedy approach to solve the problem of ridesharing (finding a route for a driver while picking up people that are going to the same destination, while taking time constraints into account).
+This is a group project developed for the course of CAL (analysis and construction of algorithms) at FEUP. It uses a greedy approach to solve the problem of ridesharing (finding a route for a driver while picking up people that are going to the same destination, while taking time constraints into account). 
+In the docs folder you may find the full description of the project and it's development (report delivered for evaluation) and the report in paper format (this format does not contain the empirical data nor the sections concerning the implementation of the algorithms).
 
 ## Authors
 
