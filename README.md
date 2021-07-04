@@ -6,7 +6,7 @@
 
 **Course:** *Conceção e Análise de Algoritmos* ([CAL](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=419999)) | Algorithm Design and Analysis
 
-**Authors:** David Silva ([daviddias99](https://github.com/daviddias99)), [Joana Ferreira](https://github.com/joanaferreira0011 "joanaferreira0011") and Luís Cunha ([luispcunha](https://github.com/luispcunha))
+**Authors:** David Silva ([daviddias99](https://github.com/daviddias99)), Joana Ferreira ([joanaferreira0011](https://github.com/joanaferreira0011 "joanaferreira0011")) and Luís Cunha ([luispcunha](https://github.com/luispcunha))
 
 ---
 
