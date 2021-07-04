@@ -1,7 +1,5 @@
 # Ridesharing using Graphs
 
-# Repos name
-
 **2017/2018** - 2rd Year, 2nd Semester
 
 **Course:** *Conceção e Análise de Algoritmos* ([CAL](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=419999)) | Algorithm Design and Analysis
