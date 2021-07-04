@@ -1,15 +1,25 @@
 # Ridesharing using Graphs
 
-This is a group project developed for the course of CAL (analysis and construction of algorithms) at FEUP. It uses a greedy approach to solve the problem of ridesharing (finding a route for a driver while picking up people that are going to the same destination, while taking time constraints into account). 
+# Repos name
+
+**2017/2018** - 2rd Year, 2nd Semester
+
+**Course:** *Conceção e Análise de Algoritmos* ([CAL](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=419999)) | Algorithm Design and Analysis
+
+**Authors:** David Silva ([daviddias99](https://github.com/daviddias99)), [Joana Ferreira](https://github.com/joanaferreira0011 "joanaferreira0011") and Luís Cunha ([luispcunha](https://github.com/luispcunha))
+
+---
+
+**Description:** This is a group project developed for the course of CAL (analysis and construction of algorithms) at FEUP. It uses a greedy approach to solve the problem of ridesharing (finding a route for a driver while picking up people that are going to the same destination, while taking time constraints into account). 
 In the docs folder you may find the full description of the project and it's development (report delivered for evaluation) and the report in paper format (this format does not contain the empirical data nor the sections concerning the implementation of the algorithms).
 
-## Project Grade : 19.74 / 20
+**Technologies:** C++, graph_viz
 
-## Authors
+**Skills:** Algorithm design, graph algorithms, algorithm specification, Network algorithms
 
-* [David Dias](https://github.com/daviddias99 "daviddias99")
-* [Joana Ferreira](https://github.com/joanaferreira0011 "joanaferreira0011")
-* [Luís Cunha](https://github.com/luispcunha "luispcunha")
+**Grade:** 19.74 / 20
+
+---
 
 ## Compilation/Installation
 
